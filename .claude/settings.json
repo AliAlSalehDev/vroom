@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//d/vroom/**)",
+      "Bash(Get-ChildItem -Path \"D:\\\\vroom\" -Depth 1)",
+      "Bash(Select-Object Name, PSIsContainer)"
+    ]
+  }
+}
