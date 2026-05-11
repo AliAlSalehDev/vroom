@@ -1,6 +1,6 @@
 export default function HomePage() {
   return (
-    <div className="px-4 md:px-12 lg:px-20 py-4">
+    <div className="px-4 md:px-12 lg:px-20 py-4 pt-0">
       {/* ── Hero Section ──────────────────────────────────────────────────────── */}
       <section
         className="relative hero-rounded overflow-hidden bg-black flex items-center"

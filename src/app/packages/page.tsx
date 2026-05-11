@@ -88,7 +88,7 @@ export default function PackagesPage() {
   return (
     <>
       <div className="px-4 md:px-12 lg:px-20 py-4">
-        <div className="max-w-7xl mx-auto py-16 pt-8 space-y-20 mb-8">
+        <div className="max-w-7xl mx-auto py-16 pt-4 space-y-20 mb-8">
           {/* ── Packages Section ─────────────────────────────────────────────── */}
           <section>
             <div className="mb-10">
