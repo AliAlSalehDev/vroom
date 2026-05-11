@@ -1,26 +1,214 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), sans-serif;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ── Shared layout ─────────────────────────────────────────────────────────── */
+.hero-rounded {
+  border-radius: 40px;
+}
+.header-cta {
+  font-weight: 300;
+}
+
+/* ── Section typography ─────────────────────────────────────────────────────── */
+.section-title {
+  font-size: 36px;
+  font-weight: 600;
+}
+.section-p {
+  font-size: 17px;
+}
+.p-color {
+  color: #0a0a0a;
+}
+
+/* ── Page-level headers ─────────────────────────────────────────────────────── */
+.page-header {
+  font-size: 45px;
+  color: #0a0a0a;
+  font-weight: 600;
+  line-height: 1.1;
+}
+.page-p {
+  font-size: 18px;
+  font-weight: 300;
+  color: #0a0a0a;
+}
+
+/* ── Feature blocks (about, contact) ────────────────────────────────────────── */
+.feature-title {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.feature-text {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #0a0a0a;
+}
+
+/* ── Home page hero banner ──────────────────────────────────────────────────── */
+.banner-title {
+  font-size: 108px;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+.banner-subtitle {
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.banner-p {
+  font-size: 20px;
+  font-weight: 300;
+  margin-top: 0 !important;
+  line-height: 1.4;
+}
+.hero-cta-title {
+  font-size: 20.5px;
+}
+.hero-cta-text {
+  font-size: 17px;
+}
+
+/* ── Contact page hero (different sizes) ────────────────────────────────────── */
+.contact-banner-title {
+  font-size: 45px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+.contact-banner-subtitle {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+/* ── Cars page filter sidebar ───────────────────────────────────────────────── */
+.filter-select {
+  width: 100%;
+  padding: 8px 0;
+  border-bottom: 1px solid #000;
+  appearance: none;
+  background: transparent;
+  font-size: 15px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* ── Shared button variant ──────────────────────────────────────────────────── */
+.teal-btn {
+  background-color: #00f7ef;
+  transition: all 0.3s ease;
+}
+.teal-btn:hover {
+  background-color: #00d8d0;
+}
+
+/* ── Package cards ──────────────────────────────────────────────────────────── */
+.package-card {
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+}
+.package-card:hover {
+  transform: translateY(-5px);
+}
+.checkmark-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.bg-vroom-teal {
+  background-color: #00f7ef;
+}
+
+/* ── Booking popup form inputs ──────────────────────────────────────────────── */
+.custom-input {
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 9999px;
+  padding: 12px 24px;
+  width: 100%;
+  color: white;
+  outline: none;
+}
+.custom-input:focus {
+  border-color: #00f7ef;
+}
+
+/* ── Time slots ─────────────────────────────────────────────────────────────── */
+.time-slot {
+  border: 1px solid #4b5563;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+  color: #9ca3af;
+}
+.time-slot:hover:not(.disabled) {
+  border-color: #00f7ef;
+  color: white;
+}
+.time-slot.selected {
+  background-color: #00f7ef;
+  color: black !important;
+  border-color: #00f7ef;
+  font-weight: 600;
+}
+.time-slot.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background-color: #2a2a2a;
+  border-style: dashed;
+}
+
+/* ── Terms popup scrollbar ──────────────────────────────────────────────────── */
+.terms-scroll {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+.terms-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.terms-scroll::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+.terms-scroll::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 10px;
+}
+
+/* ── Booking popup animation ────────────────────────────────────────────────── */
+.booking-popup-overlay {
+  transition:
+    visibility 0.3s,
+    opacity 0.3s;
+}
+.booking-popup-content {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Terms popup animation ──────────────────────────────────────────────────── */
+.terms-popup-overlay {
+  transition:
+    visibility 0.3s,
+    opacity 0.3s;
+}
+.terms-popup-content {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
