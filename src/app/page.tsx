@@ -218,9 +218,9 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          {/* Cards stagger in */}
+          {/* Cards — horizontal scroll on mobile, grid on desktop */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-3 md:gap-6"
             variants={stagger(0.13)}
             initial="hidden"
             whileInView="show"
@@ -229,7 +229,7 @@ export default function HomePage() {
             {[1, 2, 3].map((i) => (
               <motion.div
                 key={i}
-                className="border border-black rounded-[32px] p-8 flex flex-col justify-center min-h-[250px]"
+                className="border border-black rounded-[32px] p-8 flex flex-col justify-center min-h-[250px] flex-shrink-0 w-[78vw] md:w-auto snap-start"
                 variants={fadeLeft}
               >
                 <p
