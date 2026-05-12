@@ -36,10 +36,10 @@ const viewOpts = { once: true, amount: 0.2 } as const;
 /* ── Page ──────────────────────────────────────────────────────────────────── */
 export default function HomePage() {
   return (
-    <div className="px-8 md:px-12 lg:px-20 py-4 pt-0">
+    <div className="md:px-12 lg:px-20 py-4 pt-0">
       {/* ── Hero ────────────────────────────────────────────────────────────── */}
       <section
-        className="relative hero-rounded overflow-hidden bg-black flex items-center"
+        className="mx-6 md:mx-0 relative hero-rounded overflow-hidden bg-black flex items-center"
         style={{ height: "85vh" }}
       >
         <div className="absolute inset-0 z-0 hero-bg" />
@@ -112,7 +112,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Main content ────────────────────────────────────────────────────── */}
-      <div className="max-w-7xl mx-auto py-16 space-y-24">
+      <div className="max-w-7xl mx-auto py-16 space-y-24 px-8 md:px-0">
         {/* 600+ point inspection */}
         <section>
           {/* Section heading slides in from right */}
@@ -138,7 +138,7 @@ export default function HomePage() {
 
           {/* Cards — horizontal scroll on mobile, grid on desktop */}
           <motion.div
-            className="-mx-8 md:mx-0 flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:gap-y-10"
+            className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:gap-y-10"
             variants={stagger(0.09)}
             initial="hidden"
             whileInView="show"
@@ -230,7 +230,7 @@ export default function HomePage() {
 
           {/* Cards — horizontal scroll on mobile, grid on desktop */}
           <motion.div
-            className="-mx-8 md:mx-0 flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-3 md:gap-6"
+            className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-3 md:gap-6"
             variants={stagger(0.13)}
             initial="hidden"
             whileInView="show"

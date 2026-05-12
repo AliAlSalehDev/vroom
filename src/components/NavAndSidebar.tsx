@@ -11,7 +11,7 @@ export default function NavAndSidebar() {
   return (
     <>
       {/* ── Navbar ──────────────────────────────────────────────────────────── */}
-      <div className="px-8 md:px-12 lg:px-20 pt-4">
+      <div className="px-6 md:px-12 lg:px-20 pt-4">
         <nav className="bg-white flex items-center justify-between py-4 mb-4">
           <div className="flex items-center">
             <Link href="/">
