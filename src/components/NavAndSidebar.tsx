@@ -11,7 +11,7 @@ export default function NavAndSidebar() {
   return (
     <>
       {/* ── Navbar ──────────────────────────────────────────────────────────── */}
-      <div className="px-4 md:px-12 lg:px-20 pt-4">
+      <div className="px-8 md:px-12 lg:px-20 pt-4">
         <nav className="bg-white flex items-center justify-between py-4 mb-4">
           <div className="flex items-center">
             <Link href="/">
@@ -20,7 +20,7 @@ export default function NavAndSidebar() {
           </div>
 
           <div className="flex items-center space-x-6">
-            <button className="relative group overflow-hidden bg-[#00F7EF] text-black py-2 px-6 rounded-xl border border-black text-md transition-colors duration-300 header-cta">
+            <button className="relative group overflow-hidden bg-[#00F7EF] hidden lg:block text-black py-2 px-6 rounded-xl border border-black text-md transition-colors duration-300 header-cta">
               <span className="absolute inset-0 w-0 bg-[#80fff3] transition-all duration-[1.5s] ease-out group-hover:w-full"></span>
               <span className="relative z-10">Book Inspection</span>
             </button>
@@ -66,40 +66,81 @@ export default function NavAndSidebar() {
           </div>
 
           <div className="flex-grow flex flex-col justify-center px-12 space-y-4">
-            <Link href="/" onClick={toggleSidebar} className="text-2xl font-light text-gray-900 hover:text-[#00F7EF]">
+            <Link
+              href="/"
+              onClick={toggleSidebar}
+              className="text-2xl font-light text-gray-900 hover:text-[#00F7EF]"
+            >
               Home
             </Link>
-            <Link href="/packages" onClick={toggleSidebar} className="text-2xl font-light text-gray-900 hover:text-[#00F7EF]">
+            <Link
+              href="/packages"
+              onClick={toggleSidebar}
+              className="text-2xl font-light text-gray-900 hover:text-[#00F7EF]"
+            >
               Packages
             </Link>
-            <Link href="/cars" onClick={toggleSidebar} className="text-2xl font-light text-gray-900 hover:text-[#00F7EF]">
+            <Link
+              href="/cars"
+              onClick={toggleSidebar}
+              className="text-2xl font-light text-gray-900 hover:text-[#00F7EF]"
+            >
               Inspected Car
             </Link>
-            <Link href="/about" onClick={toggleSidebar} className="text-2xl font-light text-gray-900 hover:text-[#00F7EF]">
+            <Link
+              href="/about"
+              onClick={toggleSidebar}
+              className="text-2xl font-light text-gray-900 hover:text-[#00F7EF]"
+            >
               Why Vroom
             </Link>
-            <Link href="/contact" onClick={toggleSidebar} className="text-2xl font-light text-gray-900 hover:text-[#00F7EF]">
+            <Link
+              href="/contact"
+              onClick={toggleSidebar}
+              className="text-2xl font-light text-gray-900 hover:text-[#00F7EF]"
+            >
               Contact us
             </Link>
           </div>
 
           <div className="flex-grow flex justify-start px-12 gap-6">
-            <a href="#" className="text-2xl font-normal text-gray-900 hover:text-[#00F7EF]">
+            <a
+              href="#"
+              className="text-2xl font-normal text-gray-900 hover:text-[#00F7EF]"
+            >
               <img src="/assets/linkedin_black.svg" width="25" alt="LinkedIn" />
             </a>
-            <a href="#" className="text-2xl font-normal text-gray-900 hover:text-[#00F7EF]">
-              <img src="/assets/instagram-dark.svg" width="25" alt="Instagram" />
+            <a
+              href="#"
+              className="text-2xl font-normal text-gray-900 hover:text-[#00F7EF]"
+            >
+              <img
+                src="/assets/instagram-dark.svg"
+                width="25"
+                alt="Instagram"
+              />
             </a>
-            <a href="#" className="text-2xl font-normal text-gray-900 hover:text-[#00F7EF]">
+            <a
+              href="#"
+              className="text-2xl font-normal text-gray-900 hover:text-[#00F7EF]"
+            >
               <img src="/assets/whatsapp-dark.svg" width="25" alt="WhatsApp" />
             </a>
           </div>
 
           <div className="p-12 flex items-center space-x-6 text-gray-900">
-            <a href="#"><svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"></svg></a>
-            <a href="#"><svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"></svg></a>
-            <a href="#"><svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"></svg></a>
-            <a href="#"><svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"></svg></a>
+            <a href="#">
+              <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"></svg>
+            </a>
+            <a href="#">
+              <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"></svg>
+            </a>
+            <a href="#">
+              <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"></svg>
+            </a>
+            <a href="#">
+              <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"></svg>
+            </a>
           </div>
         </div>
       </div>

@@ -7,24 +7,28 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  show:   { opacity: 1, y: 0,  transition: { duration: 0.65, ease: EASE } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
 };
 
 const fadeLeft = {
   hidden: { opacity: 0, x: -40 },
-  show:   { opacity: 1, x: 0,  transition: { duration: 0.65, ease: EASE } },
+  show: { opacity: 1, x: 0, transition: { duration: 0.65, ease: EASE } },
 };
 
 const fadeRight = {
   hidden: { opacity: 0, x: 40 },
-  show:   { opacity: 1, x: 0,  transition: { duration: 0.65, ease: EASE } },
+  show: { opacity: 1, x: 0, transition: { duration: 0.65, ease: EASE } },
 };
 
-
+// Cards inside overflow-x-auto must not use x offset — it shifts scroll bounds and causes a layout glitch
+const cardReveal = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } },
+};
 
 const stagger = (amount = 0.1) => ({
   hidden: {},
-  show:   { transition: { staggerChildren: amount } },
+  show: { transition: { staggerChildren: amount } },
 });
 
 const viewOpts = { once: true, amount: 0.2 } as const;
@@ -32,8 +36,7 @@ const viewOpts = { once: true, amount: 0.2 } as const;
 /* ── Page ──────────────────────────────────────────────────────────────────── */
 export default function HomePage() {
   return (
-    <div className="px-5 md:px-12 lg:px-20 py-4 pt-0">
-
+    <div className="px-8 md:px-12 lg:px-20 py-4 pt-0">
       {/* ── Hero ────────────────────────────────────────────────────────────── */}
       <section
         className="relative hero-rounded overflow-hidden bg-black flex items-center"
@@ -42,7 +45,6 @@ export default function HomePage() {
         <div className="absolute inset-0 z-0 hero-bg" />
 
         <div className="relative z-20 w-full px-12 md:px-20 grid grid-cols-1 lg:grid-cols-2 items-center h-full">
-
           {/* Text block — stagger children on mount */}
           <motion.div
             className="text-white space-y-2"
@@ -50,7 +52,10 @@ export default function HomePage() {
             initial="hidden"
             animate="show"
           >
-            <motion.h2 className="banner-title font-semibold" variants={fadeLeft}>
+            <motion.h2
+              className="banner-title font-semibold"
+              variants={fadeLeft}
+            >
               Hello,
             </motion.h2>
 
@@ -78,7 +83,10 @@ export default function HomePage() {
               <span className="relative z-10 font-semibold hero-cta-title">
                 Book Inspection
               </span>
-              <span className="opacity-70 hero-cta-text" style={{ marginTop: -3 }}>
+              <span
+                className="opacity-70 hero-cta-text"
+                style={{ marginTop: -3 }}
+              >
                 Gas, Hybrid, Electric
               </span>
             </motion.button>
@@ -105,7 +113,6 @@ export default function HomePage() {
 
       {/* ── Main content ────────────────────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto py-16 space-y-24">
-
         {/* 600+ point inspection */}
         <section>
           {/* Section heading slides in from right */}
@@ -119,7 +126,10 @@ export default function HomePage() {
             <h2 className="section-title text-black mb-2">
               600+ point inspection: What&apos;s covered
             </h2>
-            <p className="max-w-3xl font-light p-color" style={{ fontSize: 18 }}>
+            <p
+              className="max-w-3xl font-light p-color"
+              style={{ fontSize: 18 }}
+            >
               From the roaring engine to the smallest interior detail, we leave
               no stone unturned to give you a complete and honest picture of
               your dream car.
@@ -128,7 +138,7 @@ export default function HomePage() {
 
           {/* Cards — horizontal scroll on mobile, grid on desktop */}
           <motion.div
-            className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:gap-y-10"
+            className="-mx-8 md:mx-0 flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:gap-y-10"
             variants={stagger(0.09)}
             initial="hidden"
             whileInView="show"
@@ -181,7 +191,7 @@ export default function HomePage() {
               <motion.div
                 key={title}
                 className="border border-black rounded-[32px] overflow-hidden flex flex-col flex-shrink-0 w-[78vw] md:w-auto snap-start"
-                variants={fadeLeft}
+                variants={cardReveal}
               >
                 <div className="bg-[#E5E7EB] h-48 flex items-center justify-center px-8 py-6">
                   <img
@@ -220,7 +230,7 @@ export default function HomePage() {
 
           {/* Cards — horizontal scroll on mobile, grid on desktop */}
           <motion.div
-            className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-3 md:gap-6"
+            className="-mx-8 md:mx-0 flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-3 md:gap-6"
             variants={stagger(0.13)}
             initial="hidden"
             whileInView="show"
@@ -230,7 +240,7 @@ export default function HomePage() {
               <motion.div
                 key={i}
                 className="border border-black rounded-[32px] p-8 flex flex-col justify-center min-h-[250px] flex-shrink-0 w-[78vw] md:w-auto snap-start"
-                variants={fadeLeft}
+                variants={cardReveal}
               >
                 <p
                   className="text-gray-700 italic leading-relaxed"
@@ -247,7 +257,6 @@ export default function HomePage() {
             ))}
           </motion.div>
         </section>
-
       </div>
     </div>
   );
