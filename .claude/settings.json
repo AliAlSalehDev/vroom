@@ -3,7 +3,9 @@
     "allow": [
       "Read(//d/vroom/**)",
       "Bash(Get-ChildItem -Path \"D:\\\\vroom\" -Depth 1)",
-      "Bash(Select-Object Name, PSIsContainer)"
+      "Bash(Select-Object Name, PSIsContainer)",
+      "Bash(npm install *)",
+      "Bash(npm list *)"
     ],
     "additionalDirectories": [
       "D:\\vroom\\assets"
