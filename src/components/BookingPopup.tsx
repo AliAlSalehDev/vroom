@@ -93,17 +93,17 @@ export default function BookingPopup({
           <div className="space-y-4">
             <input
               type="text"
-              placeholder="Name:"
+              placeholder="Name"
               className="custom-input font-light"
             />
             <input
               type="text"
-              placeholder="Mobile:"
+              placeholder="Mobile"
               className="custom-input font-light"
             />
             <input
               type="text"
-              placeholder="Email:"
+              placeholder="Email"
               className="custom-input font-light"
             />
 
@@ -155,7 +155,7 @@ export default function BookingPopup({
               <button
                 type="button"
                 onClick={() => handleModeSwitch("date")}
-                className={`flex-1 py-3 text-sm font-medium transition-colors duration-200 ${
+                className={`flex-1 py-3 text-md font-medium transition-colors duration-200 ${
                   scheduleMode === "date"
                     ? "bg-[#00f7ef] text-black"
                     : "text-gray-500 bg-transparent"
@@ -166,7 +166,7 @@ export default function BookingPopup({
               <button
                 type="button"
                 onClick={() => handleModeSwitch("owner")}
-                className={`flex-1 py-3 text-sm font-medium transition-colors duration-200 ${
+                className={`flex-1 py-3 text-md font-medium transition-colors duration-200 ${
                   scheduleMode === "owner"
                     ? "bg-[#00f7ef] text-black"
                     : "text-gray-500 bg-transparent"
@@ -190,8 +190,8 @@ export default function BookingPopup({
 
             {scheduleMode === "date" && showTime && (
               <div className="mt-6">
-                <p className="text-[11px] uppercase tracking-widest text-gray-500 font-bold mb-3">
-                  Available Time Slots:
+                <p className="text-[11px] tracking-widest text-gray-500 font-bold mb-3">
+                  Available time slots:
                 </p>
                 <div className="grid grid-cols-3 gap-3">
                   {TIME_SLOTS.map(({ time, disabled }) => (
@@ -212,7 +212,7 @@ export default function BookingPopup({
             {scheduleMode === "owner" && (
               <input
                 type="text"
-                placeholder="Owner's Mobile:"
+                placeholder="Owner's Mobile: EX: 9715xxxxxxxx"
                 className="custom-input font-light"
               />
             )}
@@ -237,8 +237,8 @@ export default function BookingPopup({
                 <span className="uppercase tracking-widest font-semibold text-xl">
                   Total
                 </span>
-                <span className="text-[#00f7ef] text-2xl font-semibold">
-                  {packagePrice}{" "}
+                <span className="text-[#00f7ef] text-2xl font-semibold flex gap-1">
+                  <span>{packagePrice}</span>
                   <img
                     src="/assets/dirham_primary.svg"
                     className="inline w-[18px] align-middle"
