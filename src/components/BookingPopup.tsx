@@ -19,20 +19,35 @@ const TIME_SLOTS = [
   { time: "07:00 PM", disabled: false },
 ];
 
-export default function BookingPopup({ isOpen, onClose, packageName, packageSubtitle, packagePrice }: BookingPopupProps) {
+export default function BookingPopup({
+  isOpen,
+  onClose,
+  packageName,
+  packageSubtitle,
+  packagePrice,
+}: BookingPopupProps) {
   const vat = +(packagePrice * 0.05).toFixed(2);
   const total = +(packagePrice + vat).toFixed(2);
+  const [scheduleMode, setScheduleMode] = useState<"date" | "owner">("date");
   const [showDate, setShowDate] = useState(false);
   const [showTime, setShowTime] = useState(false);
   const [dateValue, setDateValue] = useState("");
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
 
   const handleClose = () => {
+    setScheduleMode("date");
     setShowDate(false);
     setShowTime(false);
     setDateValue("");
     setSelectedSlot(null);
     onClose();
+  };
+
+  const handleModeSwitch = (mode: "date" | "owner") => {
+    setScheduleMode(mode);
+    setDateValue("");
+    setShowTime(false);
+    setSelectedSlot(null);
   };
 
   const handleLocationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -61,7 +76,9 @@ export default function BookingPopup({ isOpen, onClose, packageName, packageSubt
       className={`fixed inset-0 z-[100] flex items-end booking-popup-overlay ${
         isOpen ? "visible opacity-100" : "invisible opacity-0"
       }`}
-      onClick={(e) => { if (e.target === e.currentTarget) handleClose(); }}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) handleClose();
+      }}
     >
       <div
         className="booking-popup-content w-full h-[90vh] bg-[#1c1c1c] p-8 md:p-28 text-white relative overflow-y-auto"
@@ -82,8 +99,13 @@ export default function BookingPopup({ isOpen, onClose, packageName, packageSubt
             <input type="text" placeholder="Email:" className="custom-input" />
 
             <div className="relative">
-              <select className="custom-input appearance-none bg-[#1c1c1c]" defaultValue="">
-                <option value="" disabled>Brand</option>
+              <select
+                className="custom-input appearance-none bg-[#1c1c1c]"
+                defaultValue=""
+              >
+                <option value="" disabled>
+                  Brand
+                </option>
                 <option value="Audi">Audi</option>
                 <option value="Mercedes">Mercedes</option>
                 <option value="Nissan">Nissan</option>
@@ -105,7 +127,9 @@ export default function BookingPopup({ isOpen, onClose, packageName, packageSubt
                 defaultValue=""
                 onChange={handleLocationChange}
               >
-                <option value="" disabled>Location</option>
+                <option value="" disabled>
+                  Location
+                </option>
                 <option value="Dubai">Dubai</option>
                 <option value="Abu Dhabi">Abu Dhabi</option>
                 <option value="Sharjah">Sharjah</option>
@@ -117,7 +141,33 @@ export default function BookingPopup({ isOpen, onClose, packageName, packageSubt
               <i className="fa-solid fa-chevron-down absolute right-6 top-1/2 -translate-y-1/2 text-gray-400"></i>
             </div>
 
-            {showDate && (
+            {/* ── Schedule mode toggle ───────────────────────────────────── */}
+            <div className="flex border border-gray-600 rounded-full p-1 gap-1">
+              <button
+                type="button"
+                onClick={() => handleModeSwitch("date")}
+                className={`flex-1 py-2.5 rounded-full text-sm font-medium transition-colors duration-200 ${
+                  scheduleMode === "date"
+                    ? "bg-[#00f7ef] text-black"
+                    : "text-gray-400"
+                }`}
+              >
+                Select date
+              </button>
+              <button
+                type="button"
+                onClick={() => handleModeSwitch("owner")}
+                className={`flex-1 py-2.5 rounded-full text-sm font-medium transition-colors duration-200 ${
+                  scheduleMode === "owner"
+                    ? "bg-[#00f7ef] text-black"
+                    : "text-gray-400"
+                }`}
+              >
+                Check With Owner
+              </button>
+            </div>
+
+            {scheduleMode === "date" && showDate && (
               <div className="relative">
                 <input
                   type="date"
@@ -129,7 +179,7 @@ export default function BookingPopup({ isOpen, onClose, packageName, packageSubt
               </div>
             )}
 
-            {showTime && (
+            {scheduleMode === "date" && showTime && (
               <div className="mt-6">
                 <p className="text-[11px] uppercase tracking-widest text-gray-500 font-bold mb-3">
                   Available Time Slots:
@@ -149,6 +199,14 @@ export default function BookingPopup({ isOpen, onClose, packageName, packageSubt
                 </div>
               </div>
             )}
+
+            {scheduleMode === "owner" && (
+              <input
+                type="text"
+                placeholder="Owner's Mobile:"
+                className="custom-input"
+              />
+            )}
           </div>
 
           {/* ── Right: Summary + Pay ──────────────────────────────────────── */}
@@ -160,17 +218,40 @@ export default function BookingPopup({ isOpen, onClose, packageName, packageSubt
                     <p className="text-3xl font-semibold">{packageName}</p>
                     <p className="text-md text-gray-400">{packageSubtitle}</p>
                   </div>
-                  <p className="text-[#00f7ef] text-xl font-semibold">{packagePrice} §</p>
+                  <p className="text-[#00f7ef] text-xl font-semibold">
+                    <span>{packagePrice}</span>{" "}
+                    <img
+                      src="/assets/dirham_white.svg"
+                      className="inline w-[18px] align-middle"
+                      alt="AED"
+                    />
+                  </p>
                 </div>
                 <div className="flex justify-between">
                   <p className="text-gray-400">VAT %5</p>
-                  <p className="text-[#00f7ef] font-semibold">{vat} §</p>
+                  <p className="text-[#00f7ef] font-semibold">
+                    {vat}{" "}
+                    <img
+                      src="/assets/dirham_white.svg"
+                      className="inline w-[18px] align-middle"
+                      alt="AED"
+                    />
+                  </p>
                 </div>
               </div>
 
               <div className="mt-8 border border-gray-600 rounded-2xl p-4 flex justify-between items-center">
-                <span className="uppercase tracking-widest font-semibold text-xl">Total</span>
-                <span className="text-[#00f7ef] text-2xl font-semibold">{total} §</span>
+                <span className="uppercase tracking-widest font-semibold text-xl">
+                  Total
+                </span>
+                <span className="text-[#00f7ef] text-2xl font-semibold">
+                  {total}{" "}
+                  <img
+                    src="/assets/dirham_white.svg"
+                    className="inline w-[18px] align-middle"
+                    alt="AED"
+                  />
+                </span>
               </div>
             </div>
 
