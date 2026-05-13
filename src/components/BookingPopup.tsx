@@ -29,14 +29,12 @@ export default function BookingPopup({
   const vat = +(packagePrice * 0.05).toFixed(2);
   const total = +(packagePrice + vat).toFixed(2);
   const [scheduleMode, setScheduleMode] = useState<"date" | "owner">("date");
-  const [showDate, setShowDate] = useState(false);
   const [showTime, setShowTime] = useState(false);
   const [dateValue, setDateValue] = useState("");
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
 
   const handleClose = () => {
     setScheduleMode("date");
-    setShowDate(false);
     setShowTime(false);
     setDateValue("");
     setSelectedSlot(null);
@@ -52,7 +50,6 @@ export default function BookingPopup({
 
   const handleLocationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value !== "") {
-      setShowDate(true);
       setDateValue("");
       setShowTime(false);
       setSelectedSlot(null);
@@ -94,13 +91,25 @@ export default function BookingPopup({
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* ── Left: Form fields ─────────────────────────────────────────── */}
           <div className="space-y-4">
-            <input type="text" placeholder="Name:" className="custom-input" />
-            <input type="text" placeholder="Mobile:" className="custom-input" />
-            <input type="text" placeholder="Email:" className="custom-input" />
+            <input
+              type="text"
+              placeholder="Name:"
+              className="custom-input font-light"
+            />
+            <input
+              type="text"
+              placeholder="Mobile:"
+              className="custom-input font-light"
+            />
+            <input
+              type="text"
+              placeholder="Email:"
+              className="custom-input font-light"
+            />
 
             <div className="relative">
               <select
-                className="custom-input appearance-none bg-[#1c1c1c]"
+                className="custom-input appearance-none bg-[#1c1c1c] font-light"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -123,7 +132,7 @@ export default function BookingPopup({
 
             <div className="relative">
               <select
-                className="custom-input appearance-none bg-[#1c1c1c]"
+                className="custom-input appearance-none bg-[#1c1c1c] font-light"
                 defaultValue=""
                 onChange={handleLocationChange}
               >
@@ -142,14 +151,14 @@ export default function BookingPopup({
             </div>
 
             {/* ── Schedule mode toggle ───────────────────────────────────── */}
-            <div className="flex border border-gray-600 rounded-full p-1 gap-1">
+            <div className="flex border border-gray-600 rounded-full overflow-hidden">
               <button
                 type="button"
                 onClick={() => handleModeSwitch("date")}
-                className={`flex-1 py-2.5 rounded-full text-sm font-medium transition-colors duration-200 ${
+                className={`flex-1 py-3 text-sm font-medium transition-colors duration-200 ${
                   scheduleMode === "date"
                     ? "bg-[#00f7ef] text-black"
-                    : "text-gray-400"
+                    : "text-gray-500 bg-transparent"
                 }`}
               >
                 Select date
@@ -157,17 +166,17 @@ export default function BookingPopup({
               <button
                 type="button"
                 onClick={() => handleModeSwitch("owner")}
-                className={`flex-1 py-2.5 rounded-full text-sm font-medium transition-colors duration-200 ${
+                className={`flex-1 py-3 text-sm font-medium transition-colors duration-200 ${
                   scheduleMode === "owner"
                     ? "bg-[#00f7ef] text-black"
-                    : "text-gray-400"
+                    : "text-gray-500 bg-transparent"
                 }`}
               >
                 Check With Owner
               </button>
             </div>
 
-            {scheduleMode === "date" && showDate && (
+            {scheduleMode === "date" && (
               <div className="relative">
                 <input
                   type="date"
@@ -175,7 +184,7 @@ export default function BookingPopup({
                   onChange={handleDateChange}
                   className="custom-input"
                 />
-                <i className="fa-solid fa-calendar-days absolute right-6 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                <i className="fa-solid fa-calendar-days absolute right-6 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none font-light"></i>
               </div>
             )}
 
@@ -204,7 +213,7 @@ export default function BookingPopup({
               <input
                 type="text"
                 placeholder="Owner's Mobile:"
-                className="custom-input"
+                className="custom-input font-light"
               />
             )}
           </div>
@@ -213,30 +222,14 @@ export default function BookingPopup({
           <div className="flex flex-col py-2 pt-0">
             <div>
               <div className="space-y-4">
-                <div className="flex justify-between items-start">
+                <div className="flex justify-between items-center">
                   <div>
                     <p className="text-3xl font-semibold">{packageName}</p>
                     <p className="text-md text-gray-400">{packageSubtitle}</p>
                   </div>
-                  <p className="text-[#00f7ef] text-xl font-semibold">
-                    <span>{packagePrice}</span>{" "}
-                    <img
-                      src="/assets/dirham_white.svg"
-                      className="inline w-[18px] align-middle"
-                      alt="AED"
-                    />
-                  </p>
                 </div>
                 <div className="flex justify-between">
-                  <p className="text-gray-400">VAT %5</p>
-                  <p className="text-[#00f7ef] font-semibold">
-                    {vat}{" "}
-                    <img
-                      src="/assets/dirham_white.svg"
-                      className="inline w-[18px] align-middle"
-                      alt="AED"
-                    />
-                  </p>
+                  <p className="text-gray-400">All-inclusive</p>
                 </div>
               </div>
 
@@ -247,7 +240,7 @@ export default function BookingPopup({
                 <span className="text-[#00f7ef] text-2xl font-semibold">
                   {total}{" "}
                   <img
-                    src="/assets/dirham_white.svg"
+                    src="/assets/dirham_primary.svg"
                     className="inline w-[18px] align-middle"
                     alt="AED"
                   />
