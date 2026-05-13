@@ -112,7 +112,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Main content ────────────────────────────────────────────────────── */}
-      <div className="py-16 space-y-16 px-6 md:px-0">
+      <div className="max-w-7xl mx-auto py-16 space-y-16 px-6 md:px-0">
         {/* 600+ point inspection */}
         <section>
           {/* Section heading slides in from right */}
