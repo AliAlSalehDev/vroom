@@ -190,7 +190,7 @@ export default function BookingPopup({
 
             {scheduleMode === "date" && showTime && (
               <div className="mt-6">
-                <p className="text-[11px] tracking-widest text-gray-500 font-bold mb-3">
+                <p className="text-[11px] tracking-widest text-gray-500 font-normal mb-3">
                   Available time slots:
                 </p>
                 <div className="grid grid-cols-3 gap-3">
@@ -212,7 +212,7 @@ export default function BookingPopup({
             {scheduleMode === "owner" && (
               <input
                 type="text"
-                placeholder="Owner's Mobile: EX: 9715xxxxxxxx"
+                placeholder="Owner's Mobile: ex. 05xxxxxxxx"
                 className="custom-input font-light"
               />
             )}
