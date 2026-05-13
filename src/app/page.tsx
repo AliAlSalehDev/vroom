@@ -126,10 +126,7 @@ export default function HomePage() {
             <h2 className="section-title text-black mb-2">
               600+ point inspection: What&apos;s covered
             </h2>
-            <p
-              className="max-w-3xl font-light p-color"
-              style={{ fontSize: 18 }}
-            >
+            <p className="max-w-3xl font-light p-color text-[17px] md:text-[18px]">
               From the roaring engine to the smallest interior detail, we leave
               no stone unturned to give you a complete and honest picture of
               your dream car.

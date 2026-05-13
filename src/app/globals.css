@@ -222,13 +222,27 @@ button {
 }
 
 /* ── Hide scrollbar utility ─────────────────────────────────────────────────── */
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
 /* ── Mobile overrides (≤767px — desktop unchanged) ──────────────────────────── */
 @media (max-width: 767px) {
-  .banner-title { font-size: 62px; }
-  .banner-subtitle { font-size: 26px; }
-  .hero-bg { background-position: center center; }
-  .section-title { font-size: 32px; line-height: 1.5; }
+  .banner-title {
+    font-size: 62px;
+  }
+  .banner-subtitle {
+    font-size: 26px;
+  }
+  .hero-bg {
+    background-position: center center;
+  }
+  .section-title {
+    font-size: 32px;
+    line-height: 1.2;
+  }
 }
