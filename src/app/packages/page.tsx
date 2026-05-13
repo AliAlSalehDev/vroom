@@ -79,11 +79,13 @@ function PackageCard({
   );
 }
 
-export default function PackagesPage() {
-  const [bookingOpen, setBookingOpen] = useState(false);
+type SelectedPackage = { name: string; subtitle: string; price: number };
 
-  const openBooking = () => setBookingOpen(true);
-  const closeBooking = () => setBookingOpen(false);
+export default function PackagesPage() {
+  const [selectedPackage, setSelectedPackage] = useState<SelectedPackage | null>(null);
+
+  const openBooking = (pkg: SelectedPackage) => setSelectedPackage(pkg);
+  const closeBooking = () => setSelectedPackage(null);
 
   return (
     <>
@@ -111,7 +113,7 @@ export default function PackagesPage() {
                 buttonClass="bg-black text-white"
                 viewReportClass="text-gray-600"
                 iconClass="text-gray-400"
-                onBook={openBooking}
+                onBook={() => openBooking({ name: "Standard", subtitle: "140+ point inspection", price: 250 })}
                 items={[
                   { text: "Doorstep Inspection" },
                   { text: "Computer full Scan (OBD)" },
@@ -141,7 +143,7 @@ export default function PackagesPage() {
                 buttonClass="teal-btn text-black"
                 viewReportClass="text-gray-400 hover:text-[#00f7ef]"
                 iconClass="text-gray-500"
-                onBook={openBooking}
+                onBook={() => openBooking({ name: "Comprehensive", subtitle: "280+ point inspection", price: 399 })}
                 items={[
                   { text: "Doorstep Inspection" },
                   { text: "Computer full Scan (OBD)" },
@@ -176,7 +178,7 @@ export default function PackagesPage() {
                 buttonClass="bg-black text-white"
                 viewReportClass="text-black hover:underline"
                 iconClass=""
-                onBook={openBooking}
+                onBook={() => openBooking({ name: "Comprehensive +", subtitle: "280+ point inspection", price: 450 })}
                 items={[
                   { text: "Doorstep Inspection" },
                   { text: "Computer full Scan (OBD)" },
@@ -216,7 +218,7 @@ export default function PackagesPage() {
                 viewReportClass="text-gray-600 hover:underline"
                 iconClass="text-gray-400"
                 listMarginTop="mt-2"
-                onBook={openBooking}
+                onBook={() => openBooking({ name: "Hybrid Premium", subtitle: "280+ point inspection", price: 399 })}
                 items={[
                   { text: "Doorstep Inspection" },
                   { text: "Full System Diagnostic (OBD-EV)" },
@@ -254,7 +256,7 @@ export default function PackagesPage() {
                 buttonClass="bg-black text-white"
                 viewReportClass="text-black hover:underline"
                 iconClass=""
-                onBook={openBooking}
+                onBook={() => openBooking({ name: "EV Premium", subtitle: "280+ point inspection", price: 399 })}
                 items={[
                   { text: "Doorstep Inspection" },
                   { text: "Full Diagnostic Scan (OBD-EV)" },
@@ -353,7 +355,13 @@ export default function PackagesPage() {
         </div>
       </div>
 
-      <BookingPopup isOpen={bookingOpen} onClose={closeBooking} />
+      <BookingPopup
+        isOpen={selectedPackage !== null}
+        onClose={closeBooking}
+        packageName={selectedPackage?.name ?? ""}
+        packageSubtitle={selectedPackage?.subtitle ?? ""}
+        packagePrice={selectedPackage?.price ?? 0}
+      />
     </>
   );
 }

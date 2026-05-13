@@ -5,6 +5,9 @@ import { useState } from "react";
 interface BookingPopupProps {
   isOpen: boolean;
   onClose: () => void;
+  packageName: string;
+  packageSubtitle: string;
+  packagePrice: number;
 }
 
 const TIME_SLOTS = [
@@ -16,7 +19,9 @@ const TIME_SLOTS = [
   { time: "07:00 PM", disabled: false },
 ];
 
-export default function BookingPopup({ isOpen, onClose }: BookingPopupProps) {
+export default function BookingPopup({ isOpen, onClose, packageName, packageSubtitle, packagePrice }: BookingPopupProps) {
+  const vat = +(packagePrice * 0.05).toFixed(2);
+  const total = +(packagePrice + vat).toFixed(2);
   const [showDate, setShowDate] = useState(false);
   const [showTime, setShowTime] = useState(false);
   const [dateValue, setDateValue] = useState("");
@@ -152,20 +157,20 @@ export default function BookingPopup({ isOpen, onClose }: BookingPopupProps) {
               <div className="space-y-4">
                 <div className="flex justify-between items-start">
                   <div>
-                    <p className="text-3xl font-semibold">Gas Premium</p>
-                    <p className="text-md text-gray-400">240 point inspections</p>
+                    <p className="text-3xl font-semibold">{packageName}</p>
+                    <p className="text-md text-gray-400">{packageSubtitle}</p>
                   </div>
-                  <p className="text-[#00f7ef] text-xl font-semibold">450 §</p>
+                  <p className="text-[#00f7ef] text-xl font-semibold">{packagePrice} §</p>
                 </div>
                 <div className="flex justify-between">
                   <p className="text-gray-400">VAT %5</p>
-                  <p className="text-[#00f7ef] font-semibold">22.5 §</p>
+                  <p className="text-[#00f7ef] font-semibold">{vat} §</p>
                 </div>
               </div>
 
               <div className="mt-8 border border-gray-600 rounded-2xl p-4 flex justify-between items-center">
                 <span className="uppercase tracking-widest font-semibold text-xl">Total</span>
-                <span className="text-[#00f7ef] text-2xl font-semibold">472.5 §</span>
+                <span className="text-[#00f7ef] text-2xl font-semibold">{total} §</span>
               </div>
             </div>
 
