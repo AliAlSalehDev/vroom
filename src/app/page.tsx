@@ -112,7 +112,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Main content ────────────────────────────────────────────────────── */}
-      <div className="py-16 space-y-24 px-6 md:px-0">
+      <div className="py-16 space-y-16 px-6 md:px-0">
         {/* 600+ point inspection */}
         <section>
           {/* Section heading slides in from right */}
@@ -219,7 +219,7 @@ export default function HomePage() {
             <h2 className="section-title text-black mb-2">
               Client Testimonials
             </h2>
-            <p className="font-light p-color" style={{ fontSize: 18 }}>
+            <p className="font-light p-color text-[17px] md:text-[18px]">
               Discover our range of services to ensure your next car is a smart
               investment!
             </p>

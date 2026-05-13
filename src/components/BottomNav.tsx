@@ -19,7 +19,7 @@ export default function BottomNav() {
 
   return (
     <nav
-      className="md:hidden fixed bottom-0 left-0 w-screen z-50 bg-[#bababa] flex items-center justify-around pt-8 pb-12 overflow-hidden"
+      className="md:hidden fixed bottom-0 left-0 w-screen z-50 bg-[#bababa] flex items-center justify-around py-6 px-20 overflow-hidden"
       style={{
         borderRadius: "36px 36px 0 0",
         boxShadow: "0 -6px 24px rgba(0, 0, 0, 0.07)",
