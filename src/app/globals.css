@@ -230,4 +230,5 @@ button {
   .banner-title { font-size: 62px; }
   .banner-subtitle { font-size: 26px; }
   .hero-bg { background-position: center center; }
+  .section-title { font-size: 32px; line-height: 1.5; }
 }
