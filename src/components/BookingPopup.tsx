@@ -26,18 +26,18 @@ export default function BookingPopup({
   packageSubtitle,
   packagePrice,
 }: BookingPopupProps) {
-  const vat = +(packagePrice * 0.05).toFixed(2);
-  const total = +(packagePrice + vat).toFixed(2);
   const [scheduleMode, setScheduleMode] = useState<"date" | "owner">("date");
   const [showTime, setShowTime] = useState(false);
   const [dateValue, setDateValue] = useState("");
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleClose = () => {
     setScheduleMode("date");
     setShowTime(false);
     setDateValue("");
     setSelectedSlot(null);
+    setIsProcessing(false);
     onClose();
   };
 
@@ -238,7 +238,7 @@ export default function BookingPopup({
                   Total
                 </span>
                 <span className="text-[#00f7ef] text-2xl font-semibold">
-                  {total}{" "}
+                  {packagePrice}{" "}
                   <img
                     src="/assets/dirham_primary.svg"
                     className="inline w-[18px] align-middle"
@@ -252,8 +252,18 @@ export default function BookingPopup({
               <p className="text-sm text-gray-400 mb-4">
                 Thank you! After payment you will receive a call shortly.
               </p>
-              <button className="teal-btn text-black w-full py-3 rounded-full font-semibold mt-4 text-lg">
-                Pay
+              <button
+                onClick={() => setIsProcessing(true)}
+                disabled={isProcessing}
+                className="relative overflow-hidden bg-[#00f7ef] text-black w-full py-3 rounded-full font-semibold mt-4 text-lg"
+              >
+                <span
+                  className="absolute inset-0 left-0 top-0 h-full bg-[#80fff3] transition-all duration-[1.5s] ease-out"
+                  style={{ width: isProcessing ? "100%" : "0%" }}
+                />
+                <span className="relative z-10">
+                  {isProcessing ? "Processing..." : "Pay"}
+                </span>
               </button>
             </div>
           </div>
