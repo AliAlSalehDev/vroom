@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function NavAndSidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleSidebar = () => setSidebarOpen((prev) => !prev);
 
@@ -66,41 +68,24 @@ export default function NavAndSidebar() {
           </div>
 
           <div className="flex-grow flex flex-col justify-center px-12 space-y-4">
-            <Link
-              href="/"
-              onClick={toggleSidebar}
-              className="text-2xl font-light text-gray-900 hover:text-[#00F7EF]"
-            >
-              Home
-            </Link>
-            <Link
-              href="/packages"
-              onClick={toggleSidebar}
-              className="text-2xl font-light text-gray-900 hover:text-[#00F7EF]"
-            >
-              Packages
-            </Link>
-            <Link
-              href="/cars"
-              onClick={toggleSidebar}
-              className="text-2xl font-light text-gray-900 hover:text-[#00F7EF]"
-            >
-              Inspected Car
-            </Link>
-            <Link
-              href="/about"
-              onClick={toggleSidebar}
-              className="text-2xl font-light text-gray-900 hover:text-[#00F7EF]"
-            >
-              Why Vroom
-            </Link>
-            <Link
-              href="/contact"
-              onClick={toggleSidebar}
-              className="text-2xl font-light text-gray-900 hover:text-[#00F7EF]"
-            >
-              Contact us
-            </Link>
+            {[
+              { href: "/",        label: "Home"         },
+              { href: "/packages",label: "Packages"     },
+              { href: "/cars",    label: "Inspected Car"},
+              { href: "/about",   label: "Why Vroom"    },
+              { href: "/contact", label: "Contact us"   },
+            ].map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={toggleSidebar}
+                className={`text-2xl font-light transition-colors hover:text-[#00F7EF] ${
+                  pathname === href ? "text-[#00F7EF]" : "text-gray-900"
+                }`}
+              >
+                {label}
+              </Link>
+            ))}
           </div>
 
           <div className="flex-grow flex justify-start px-12 gap-6">
