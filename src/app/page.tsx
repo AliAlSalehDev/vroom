@@ -198,7 +198,9 @@ export default function HomePage() {
                   />
                 </div>
                 <div className="bg-[#00F7EF] p-6 flex-grow">
-                  <h3 className="font-semibold text-xl mb-1">{title}</h3>
+                  <h3 className="font-semibold text-xl md:text-2xl mb-1">
+                    {title}
+                  </h3>
                   <p className="section-p font-light leading-snug">{desc}</p>
                 </div>
               </motion.div>
