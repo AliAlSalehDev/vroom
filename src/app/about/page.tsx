@@ -11,12 +11,9 @@ export default function AboutPage() {
       <div className="px-6 md:px-12 lg:px-20 pb-4 pt-0">
         <main className="mb-8">
           {/* ── Why Choose Vroom ────────────────────────────────────────────── */}
-          <section
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-8"
-            style={{ height: "85vh" }}
-          >
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-8">
             {/* Video */}
-            <div className="bg-[#F3F4F6] hero-rounded overflow-hidden flex items-center justify-center min-h-[400px]">
+            <div className="bg-[#F3F4F6] hero-rounded overflow-hidden flex items-center justify-center min-h-[400px] lg:h-[85vh]">
               <video
                 autoPlay
                 loop
@@ -30,7 +27,7 @@ export default function AboutPage() {
             </div>
 
             {/* Text */}
-            <div className="bg-[#f5f5f5] hero-rounded p-8 md:py-12 md:px-24 flex flex-col justify-center">
+            <div className="bg-[#f5f5f5] hero-rounded p-8 lg:py-12 lg:px-24 flex flex-col justify-center">
               <h2 className="page-header mb-6">Why Choose Vroom</h2>
               <div className="space-y-4 page-p">
                 <p>
@@ -106,20 +103,6 @@ export default function AboutPage() {
 
             {/* ── Mission & Vision ────────────────────────────────────────────── */}
             <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="rounded-[32px] p-0 min-h-[280px] flex border border-black h-[340px]">
-                <img
-                  src="https://res.cloudinary.com/dpu70i1mg/image/upload/v1778356034/car-video_m6uyjw.png"
-                  className="w-full h-full object-cover rounded-[32px]"
-                  alt="Mission visual"
-                />
-              </div>
-              <div className="rounded-[32px] p-0 min-h-[280px] flex border border-black h-[340px]">
-                <img
-                  src="https://res.cloudinary.com/dpu70i1mg/image/upload/v1778356034/car-video_m6uyjw.png"
-                  className="w-full h-full object-cover rounded-[32px]"
-                  alt="Vision visual"
-                />
-              </div>
               <div className="bg-[#00F7EF] rounded-[32px] p-16 py-20 min-h-[280px] flex flex-col justify-center border border-black">
                 <h2 className="text-4xl font-medium mb-4">Mission</h2>
                 <p className="text-lg font-light leading-snug">
@@ -129,6 +112,13 @@ export default function AboutPage() {
                   turn uncertainty into total confidence.
                 </p>
               </div>
+              <div className="rounded-[32px] p-0 min-h-[280px] flex border border-black h-[340px]">
+                <img
+                  src="https://res.cloudinary.com/dpu70i1mg/image/upload/v1778356034/car-video_m6uyjw.png"
+                  className="w-full h-full object-cover rounded-[32px]"
+                  alt="Mission visual"
+                />
+              </div>
               <div className="bg-black text-white rounded-[32px] p-16 py-20 min-h-[280px] flex flex-col justify-center">
                 <h2 className="text-4xl font-medium mb-4">Vision</h2>
                 <p className="text-lg font-light leading-snug opacity-90">
@@ -137,6 +127,13 @@ export default function AboutPage() {
                   and convenience with cutting-edge technology and an elite team
                   of experts.
                 </p>
+              </div>
+              <div className="rounded-[32px] p-0 min-h-[280px] flex border border-black h-[340px]">
+                <img
+                  src="https://res.cloudinary.com/dpu70i1mg/image/upload/v1778356034/car-video_m6uyjw.png"
+                  className="w-full h-full object-cover rounded-[32px]"
+                  alt="Vision visual"
+                />
               </div>
             </section>
 
