@@ -245,4 +245,10 @@ button {
     font-size: 32px;
     line-height: 1.2;
   }
+  .page-header {
+    font-size: 40px;
+  }
+  .page-p {
+    font-size: 17px;
+  }
 }

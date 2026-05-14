@@ -1,9 +1,9 @@
 export default function ContactPage() {
   return (
-    <div className="px-4 md:px-12 lg:px-20 pb-4 pt-0 mb-8">
+    <div className="md:px-12 lg:px-20 pb-4 pt-0 mb-8">
       {/* ── Hero Section ──────────────────────────────────────────────────────── */}
       <section
-        className="relative hero-rounded overflow-hidden bg-black flex items-center"
+        className="mx-4 md:mx-0 relative hero-rounded overflow-hidden bg-black flex items-center"
         style={{ height: "85vh" }}
       >
         {/* Background */}
@@ -18,7 +18,7 @@ export default function ContactPage() {
         ></div>
 
         {/* Content */}
-        <div className="relative z-20 w-full px-12 md:px-20 grid grid-cols-1 lg:grid-cols-2 items-center h-full">
+        <div className="relative z-20 w-full px-6 md:px-20 grid grid-cols-1 lg:grid-cols-2 items-center h-full">
           <div className="text-white space-y-8 max-w-lg">
             <div>
               <h2 className="contact-banner-title">Contact us</h2>
@@ -83,7 +83,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── Feature Cards ─────────────────────────────────────────────────────── */}
-      <div className="max-w-7xl mx-auto py-16 space-y-24 mt-8">
+      <div className="max-w-7xl mx-auto py-16 space-y-24 mt-8 px-6 md:px-0">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
           <div className="flex flex-col">
             <div className="w-12 h-12">

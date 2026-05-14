@@ -79,7 +79,7 @@ export default function HomePage() {
             <motion.div variants={fadeUp}>
               <Link
                 href="/packages"
-                className="relative inline-flex group overflow-hidden flex flex-col items-center justify-center bg-[#00F7EF] text-black rounded-2xl py-1 px-20 transition hero-cta"
+                className="relative inline-flex group overflow-hidden flex flex-col items-center justify-center bg-[#00F7EF] text-black rounded-2xl py-1 px-10 md:px-20 transition hero-cta"
               >
                 <span className="absolute inset-0 w-0 bg-[#80fff3] transition-all duration-[1.5s] ease-out group-hover:w-full" />
                 <span className="relative z-10 font-semibold hero-cta-title">

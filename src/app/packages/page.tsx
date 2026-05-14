@@ -42,7 +42,7 @@ function PackageCard({
 }: PackageCardProps) {
   return (
     <div className={`package-card ${bg} p-8 flex flex-col ${textColor}`}>
-      <h3 className="text-4xl font-bold mb-1">{title}</h3>
+      <h3 className="text-3xl md:text-4xl font-bold mb-1">{title}</h3>
       <p className={`${subtitleColor} mb-6 text-sm`}>{subtitle}</p>
       <div className="flex gap-2 mb-2" style={{ alignItems: "last baseline" }}>
         <span className="text-5xl font-bold">{price}</span>
@@ -90,7 +90,7 @@ export default function PackagesPage() {
 
   return (
     <>
-      <div className="px-4 md:px-12 lg:px-20 py-4">
+      <div className="px-6 md:px-12 lg:px-20 py-4">
         <div className="max-w-7xl mx-auto py-16 pt-4 space-y-20 mb-8">
           {/* ── Packages Section ─────────────────────────────────────────────── */}
           <section>
@@ -349,7 +349,7 @@ export default function PackagesPage() {
               <p className="page-p">Three simple steps</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="-mx-6 px-4 scroll-pl-4 md:mx-0 md:px-0 md:scroll-pl-0 flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-3 md:gap-8">
               {[
                 {
                   img: "/assets/mobile-check.svg",
@@ -372,7 +372,7 @@ export default function PackagesPage() {
               ].map(({ img, alt, title, desc }) => (
                 <div
                   key={title}
-                  className="border border-black rounded-[32px] p-8 pt-4 flex flex-col bg-[#F0F0F0] text-center md:text-left"
+                  className="border border-black rounded-[32px] p-8 pt-4 flex flex-col bg-[#F0F0F0] text-center md:text-left flex-shrink-0 w-[78vw] md:w-auto snap-start"
                 >
                   <div className="mb-8 flex justify-center">
                     <img src={img} className="h-52 object-contain" alt={alt} />

@@ -8,7 +8,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <div className="px-4 md:px-12 lg:px-20 pb-4 pt-0">
+      <div className="px-6 md:px-12 lg:px-20 pb-4 pt-0">
         <main className="mb-8">
           {/* ── Why Choose Vroom ────────────────────────────────────────────── */}
           <section
