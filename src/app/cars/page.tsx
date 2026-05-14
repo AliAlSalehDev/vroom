@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 /* ── Custom filter select ───────────────────────────────────────────────────── */
 interface Option {
@@ -222,6 +223,8 @@ const FILTERS: { label: string; options: Option[] }[] = [
 
 /* ── Page ───────────────────────────────────────────────────────────────────── */
 export default function CarsPage() {
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
   return (
     <div className="px-6 md:px-12 lg:px-20 py-4">
       <div className="max-w-7xl mx-auto pb-8 pt-4 mb-8">
@@ -259,9 +262,49 @@ export default function CarsPage() {
         </section>
 
         {/* ── Filter + Grid ─────────────────────────────────────────────────── */}
+
+        {/* Mobile filter toggle — hidden on desktop */}
+        <div className="lg:hidden mb-6">
+          <button
+            type="button"
+            onClick={() => setMobileFiltersOpen((v) => !v)}
+            className="w-full bg-[#00F7EF] rounded-full py-4 px-6 flex items-center justify-between text-black font-medium text-lg"
+          >
+            <span>Filters</span>
+            <i className="fa-solid fa-sliders text-xl" />
+          </button>
+
+          <AnimatePresence initial={false}>
+            {mobileFiltersOpen && (
+              <motion.div
+                key="mobile-filters"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="overflow-hidden"
+              >
+                <div className="mt-4 border border-gray-200 rounded-[24px] p-6">
+                  {FILTERS.map(({ label, options }) => (
+                    <FilterSelect key={label} label={label} options={options} />
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => setMobileFiltersOpen(false)}
+                    className="relative group overflow-hidden bg-[#00F7EF] w-full py-2 rounded-full font-semibold text-black text-lg border border-black mt-6"
+                  >
+                    <span className="absolute inset-0 w-0 bg-[#80fff3] transition-all duration-[1.5s] ease-out group-hover:w-full" />
+                    <span className="relative z-10">Apply</span>
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-28">
-          {/* Sidebar filters */}
-          <aside className="w-full lg:w-60 flex-shrink-0">
+          {/* Sidebar filters — desktop only */}
+          <aside className="hidden lg:block w-60 flex-shrink-0">
             {FILTERS.map(({ label, options }) => (
               <FilterSelect key={label} label={label} options={options} />
             ))}
