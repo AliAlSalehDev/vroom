@@ -52,7 +52,7 @@ function PackageCard({
         >
           Advanced inspection
           <br />
-          package + %5 VAT
+          package + %5 • All-inclusive
         </div>
       </div>
       <ul className={`checkmark-list ${listMarginTop} flex-grow ${textColor}`}>
@@ -82,7 +82,8 @@ function PackageCard({
 type SelectedPackage = { name: string; subtitle: string; price: number };
 
 export default function PackagesPage() {
-  const [selectedPackage, setSelectedPackage] = useState<SelectedPackage | null>(null);
+  const [selectedPackage, setSelectedPackage] =
+    useState<SelectedPackage | null>(null);
 
   const openBooking = (pkg: SelectedPackage) => setSelectedPackage(pkg);
   const closeBooking = () => setSelectedPackage(null);
@@ -113,7 +114,13 @@ export default function PackagesPage() {
                 buttonClass="bg-black text-white"
                 viewReportClass="text-gray-600"
                 iconClass="text-gray-400"
-                onBook={() => openBooking({ name: "Standard", subtitle: "140+ point inspection", price: 250 })}
+                onBook={() =>
+                  openBooking({
+                    name: "Standard",
+                    subtitle: "140+ point inspection",
+                    price: 250,
+                  })
+                }
                 items={[
                   { text: "Doorstep Inspection" },
                   { text: "Computer full Scan (OBD)" },
@@ -143,7 +150,13 @@ export default function PackagesPage() {
                 buttonClass="teal-btn text-black"
                 viewReportClass="text-gray-400 hover:text-[#00f7ef]"
                 iconClass="text-gray-500"
-                onBook={() => openBooking({ name: "Comprehensive", subtitle: "280+ point inspection", price: 399 })}
+                onBook={() =>
+                  openBooking({
+                    name: "Comprehensive",
+                    subtitle: "280+ point inspection",
+                    price: 399,
+                  })
+                }
                 items={[
                   { text: "Doorstep Inspection" },
                   { text: "Computer full Scan (OBD)" },
@@ -178,7 +191,13 @@ export default function PackagesPage() {
                 buttonClass="bg-black text-white"
                 viewReportClass="text-black hover:underline"
                 iconClass=""
-                onBook={() => openBooking({ name: "Comprehensive +", subtitle: "280+ point inspection", price: 450 })}
+                onBook={() =>
+                  openBooking({
+                    name: "Comprehensive +",
+                    subtitle: "280+ point inspection",
+                    price: 450,
+                  })
+                }
                 items={[
                   { text: "Doorstep Inspection" },
                   { text: "Computer full Scan (OBD)" },
@@ -218,7 +237,13 @@ export default function PackagesPage() {
                 viewReportClass="text-gray-600 hover:underline"
                 iconClass="text-gray-400"
                 listMarginTop="mt-2"
-                onBook={() => openBooking({ name: "Hybrid Premium", subtitle: "280+ point inspection", price: 399 })}
+                onBook={() =>
+                  openBooking({
+                    name: "Hybrid Premium",
+                    subtitle: "280+ point inspection",
+                    price: 399,
+                  })
+                }
                 items={[
                   { text: "Doorstep Inspection" },
                   { text: "Full System Diagnostic (OBD-EV)" },
@@ -256,7 +281,13 @@ export default function PackagesPage() {
                 buttonClass="bg-black text-white"
                 viewReportClass="text-black hover:underline"
                 iconClass=""
-                onBook={() => openBooking({ name: "EV Premium", subtitle: "280+ point inspection", price: 399 })}
+                onBook={() =>
+                  openBooking({
+                    name: "EV Premium",
+                    subtitle: "280+ point inspection",
+                    price: 399,
+                  })
+                }
                 items={[
                   { text: "Doorstep Inspection" },
                   { text: "Full Diagnostic Scan (OBD-EV)" },

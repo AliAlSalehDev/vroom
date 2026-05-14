@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 /* ── Animation primitives ──────────────────────────────────────────────────── */
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -75,21 +76,23 @@ export default function HomePage() {
               Our experts will uncover any hidden secrets.
             </motion.p>
 
-            <motion.button
-              className="relative group overflow-hidden flex flex-col items-center justify-center bg-[#00F7EF] text-black rounded-full md:rounded-2xl py-1 px-20 transition hero-cta"
-              variants={fadeUp}
-            >
-              <span className="absolute inset-0 w-0 bg-[#80fff3] transition-all duration-[1.5s] ease-out group-hover:w-full" />
-              <span className="relative z-10 font-semibold hero-cta-title">
-                Book Inspection
-              </span>
-              <span
-                className="opacity-70 hero-cta-text"
-                style={{ marginTop: -3 }}
+            <motion.div variants={fadeUp}>
+              <Link
+                href="/packages"
+                className="relative inline-flex group overflow-hidden flex flex-col items-center justify-center bg-[#00F7EF] text-black rounded-2xl py-1 px-20 transition hero-cta"
               >
-                Gas, Hybrid, Electric
-              </span>
-            </motion.button>
+                <span className="absolute inset-0 w-0 bg-[#80fff3] transition-all duration-[1.5s] ease-out group-hover:w-full" />
+                <span className="relative z-10 font-semibold hero-cta-title">
+                  Book Inspection
+                </span>
+                <span
+                  className="opacity-70 hero-cta-text"
+                  style={{ marginTop: -3 }}
+                >
+                  Gas, Hybrid, Electric
+                </span>
+              </Link>
+            </motion.div>
           </motion.div>
 
           <div className="hidden lg:block" />
@@ -135,7 +138,7 @@ export default function HomePage() {
 
           {/* Cards — horizontal scroll on mobile, grid on desktop */}
           <motion.div
-            className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:gap-y-10"
+            className="-mx-6 px-6 scroll-pl-6 md:mx-0 md:px-0 md:scroll-pl-0 flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:gap-y-10"
             variants={stagger(0.09)}
             initial="hidden"
             whileInView="show"
@@ -229,7 +232,7 @@ export default function HomePage() {
 
           {/* Cards — horizontal scroll on mobile, grid on desktop */}
           <motion.div
-            className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-3 md:gap-6"
+            className="-mx-6 px-6 scroll-pl-6 md:mx-0 md:px-0 md:scroll-pl-0 flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-3 md:gap-6"
             variants={stagger(0.13)}
             initial="hidden"
             whileInView="show"

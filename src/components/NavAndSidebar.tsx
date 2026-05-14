@@ -22,10 +22,10 @@ export default function NavAndSidebar() {
           </div>
 
           <div className="flex items-center space-x-6">
-            <button className="relative group overflow-hidden bg-[#00F7EF] hidden lg:block text-black py-2 px-6 rounded-xl border border-black text-md transition-colors duration-300 header-cta">
+            <Link href="/packages" className="relative group overflow-hidden bg-[#00F7EF] hidden lg:block text-black py-2 px-6 rounded-xl border border-black text-md transition-colors duration-300 header-cta">
               <span className="absolute inset-0 w-0 bg-[#80fff3] transition-all duration-[1.5s] ease-out group-hover:w-full"></span>
               <span className="relative z-10">Book Inspection</span>
-            </button>
+            </Link>
 
             <button className="text-gray-800">
               <img src="/assets/whatsapp-dark.svg" width="25" alt="WhatsApp" />
