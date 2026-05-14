@@ -46,35 +46,15 @@ export default function Footer() {
           </div>
 
           {/* Nav links + Book button */}
-          <div className="flex flex-col items-end space-y-10 md:pl-[4.5rem] mt-10">
-            <div className="text-sm text-gray-300 flex flex-row w-full justify-between">
-              <Link
-                href="/about"
-                className="hover:text-white transition-colors duration-200"
-              >
-                About Us
-              </Link>
-              |
-              <Link
-                href="/packages"
-                className="hover:text-white transition-colors duration-200"
-              >
-                Packages
-              </Link>
-              |
-              <Link
-                href="/cars"
-                className="hover:text-white transition-colors duration-200"
-              >
-                Inspected Cars
-              </Link>
-              |
-              <Link
-                href="/contact"
-                className="hover:text-white transition-colors duration-200"
-              >
-                Contact Us
-              </Link>
+          <div className="flex flex-col items-end space-y-10 lg:pl-[4.5rem] mt-10">
+            <div className="text-sm text-gray-300 flex flex-col gap-y-1 w-full lg:flex-row lg:justify-between">
+              <Link href="/about" className="hover:text-white transition-colors duration-200">About Us</Link>
+              <span className="hidden lg:inline text-gray-600">|</span>
+              <Link href="/packages" className="hover:text-white transition-colors duration-200">Packages</Link>
+              <span className="hidden lg:inline text-gray-600">|</span>
+              <Link href="/cars" className="hover:text-white transition-colors duration-200">Inspected Cars</Link>
+              <span className="hidden lg:inline text-gray-600">|</span>
+              <Link href="/contact" className="hover:text-white transition-colors duration-200">Contact Us</Link>
             </div>
             <button className="relative group overflow-hidden bg-black text-gray-300 w-full py-3 rounded-full text-md border border-gray-800 hover:text-black transition">
               <span className="absolute inset-0 w-0 bg-[#00f7ef] transition-all duration-[1.5s] ease-out group-hover:w-full"></span>
