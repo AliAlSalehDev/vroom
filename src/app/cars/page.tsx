@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 
 /* ── Custom filter select ───────────────────────────────────────────────────── */
 interface Option {
@@ -309,6 +310,13 @@ export default function CarsPage() {
                 </p>
               </div>
             </div>
+            <Link
+              href="/packages"
+              className="relative inline-flex w-fit group overflow-hidden bg-[#00F7EF] md:hidden text-black py-2 px-6 rounded-xl border border-black text-md transition-colors duration-300 header-cta -mt-5"
+            >
+              <span className="absolute inset-0 w-0 bg-[#80fff3] transition-all duration-[1.5s] ease-out group-hover:w-full"></span>
+              <span className="relative z-10">Book Inspection</span>
+            </Link>
             <div className="relative flex justify-center lg:justify-end">
               <img
                 src="/assets/car-discount.svg"
@@ -393,23 +401,27 @@ export default function CarsPage() {
               </button>
 
               {/* Page numbers */}
-              {Array.from({ length: TOTAL_PAGES }, (_, i) => i + 1).map((page) => (
-                <button
-                  key={page}
-                  onClick={() => handlePageChange(page)}
-                  className={`w-9 h-9 flex items-center justify-center rounded-full text-sm font-medium transition-colors duration-200 ${
-                    currentPage === page
-                      ? "bg-[#00f7ef] text-black border border-[#00f7ef]"
-                      : "border border-gray-300 text-gray-500 hover:border-[#00f7ef] hover:text-[#00f7ef]"
-                  }`}
-                >
-                  {page}
-                </button>
-              ))}
+              {Array.from({ length: TOTAL_PAGES }, (_, i) => i + 1).map(
+                (page) => (
+                  <button
+                    key={page}
+                    onClick={() => handlePageChange(page)}
+                    className={`w-9 h-9 flex items-center justify-center rounded-full text-sm font-medium transition-colors duration-200 ${
+                      currentPage === page
+                        ? "bg-[#00f7ef] text-black border border-[#00f7ef]"
+                        : "border border-gray-300 text-gray-500 hover:border-[#00f7ef] hover:text-[#00f7ef]"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                ),
+              )}
 
               {/* Next */}
               <button
-                onClick={() => handlePageChange(Math.min(TOTAL_PAGES, currentPage + 1))}
+                onClick={() =>
+                  handlePageChange(Math.min(TOTAL_PAGES, currentPage + 1))
+                }
                 disabled={currentPage === TOTAL_PAGES}
                 className="w-9 h-9 flex items-center justify-center rounded-full border border-gray-300 text-gray-400 hover:border-[#00f7ef] hover:text-[#00f7ef] disabled:opacity-30 disabled:cursor-not-allowed transition-colors duration-200"
               >

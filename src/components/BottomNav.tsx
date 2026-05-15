@@ -7,7 +7,7 @@ export default function BottomNav() {
   const pathname = usePathname();
 
   const cls = (href: string) =>
-    `w-7 h-7 transition-colors duration-200 ${pathname === href ? "text-[#00f7ef]" : "text-gray-400"}`;
+    `w-7 h-7 transition-colors duration-200 ${pathname === href ? "text-[#00f7ef]" : "text-black"}`;
 
   return (
     <nav
