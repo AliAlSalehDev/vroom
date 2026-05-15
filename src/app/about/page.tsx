@@ -11,7 +11,7 @@ export default function AboutPage() {
       <div className=" pb-4 pt-0">
         <main className="mb-8">
           {/* ── Why Choose Vroom ────────────────────────────────────────────── */}
-          <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-8 px-4 md:px-12 lg:px-20">
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch px-4 md:px-12 lg:px-20 mb-8">
             {/* Video */}
             <div className="bg-[#F3F4F6] hero-rounded overflow-hidden flex items-center justify-center min-h-[400px] lg:h-[85vh]">
               <video
@@ -52,9 +52,9 @@ export default function AboutPage() {
             </div>
           </section>
 
-          <div className="max-w-7xl mx-auto py-16 space-y-24 mt-8 px-6 md:px-12 lg:px-20">
+          <div className="max-w-7xl mx-auto py-16 space-y-16 px-6 md:px-0 lg:px-0">
             {/* ── Icon Features Grid ──────────────────────────────────────────── */}
-            <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 gap-x-24">
+            <section className="-mx-6 px-6 scroll-pl-6 md:mx-0 md:px-0 md:scroll-pl-0 flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-8 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:gap-x-24">
               {[
                 {
                   img: "/assets/Certfied.svg",
@@ -93,7 +93,10 @@ export default function AboutPage() {
                   imgClass: "w-12 h-12",
                 },
               ].map(({ img, title, text, imgClass }) => (
-                <div key={title}>
+                <div
+                  key={title}
+                  className="flex-shrink-0 w-[72vw] md:w-auto snap-start"
+                >
                   <img src={img} className={imgClass} alt="Icon" />
                   <h3 className="feature-title">{title}</h3>
                   <p className="feature-text">{text}</p>
