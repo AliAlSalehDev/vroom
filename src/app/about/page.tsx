@@ -12,7 +12,7 @@ export default function AboutPage() {
       <div className=" pb-4 pt-0">
         <main className="mb-0 md:mb-8">
           {/* ── Why Choose Vroom ────────────────────────────────────────────── */}
-          <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch px-4 md:px-12 lg:px-20 mb-0 md:mb-8">
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch px-4 md:px-12 lg:px-20 mb-4 md:mb-8">
             {/* Video */}
             <div className="bg-[#F3F4F6] hero-rounded overflow-hidden flex items-center justify-center min-h-[400px] lg:h-[85vh]">
               <video
@@ -115,7 +115,7 @@ export default function AboutPage() {
 
             {/* ── Mission & Vision ────────────────────────────────────────────── */}
             <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-[#00F7EF] rounded-[32px] p-8 md:p-16 py-20 min-h-[280px] flex flex-col justify-center border border-black">
+              <div className="bg-[#00F7EF] rounded-[32px] px-8 py-10 md:p-16 md:py-20 min-h-[280px] flex flex-col justify-center border border-black">
                 <h2 className="text-4xl font-medium mb-4">Mission</h2>
                 <p className="text-[17px] md:text-lg font-light leading-snug">
                   We want to empower car buyers with the truth by bringing
@@ -131,7 +131,7 @@ export default function AboutPage() {
                   alt="Mission visual"
                 />
               </div>
-              <div className="bg-black text-white rounded-[32px] p-8 md:p-16 py-20 min-h-[280px] flex flex-col justify-center">
+              <div className="bg-black text-white rounded-[32px] px-8 py-10 md:p-16 md:py-20 min-h-[280px] flex flex-col justify-center">
                 <h2 className="text-4xl font-medium mb-4">Vision</h2>
                 <p className="text-[17px] md:text-lg font-light leading-snug opacity-90">
                   To become the most trusted name in mobile automotive
@@ -151,7 +151,10 @@ export default function AboutPage() {
 
             {/* ── Join Team ───────────────────────────────────────────────────── */}
             <section className=" py-0 md:py-10">
-              <h2 className="text-[32px] md:text-[36px] font-medium mb-4">
+              <h2
+                className="text-[32px] md:text-[36px] font-medium mb-4"
+                style={{ lineHeight: 1.2 }}
+              >
                 Join Our Team of Specialists
               </h2>
               <p className="text-[#0a0a0a] max-w-4xl text-[17px] md:text-lg font-light leading-snug">
