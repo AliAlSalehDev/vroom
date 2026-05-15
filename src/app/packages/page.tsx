@@ -382,7 +382,9 @@ export default function PackagesPage() {
                   <div className="mb-8 flex justify-center">
                     <img src={img} className="h-52 object-contain" alt={alt} />
                   </div>
-                  <h3 className="font-semibold text-2xl mb-1">{title}</h3>
+                  <h3 className="font-semibold text-xl md:text-2xl mb-1">
+                    {title}
+                  </h3>
                   <p className="section-p font-light leading-snug">{desc}</p>
                 </div>
               ))}
