@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import TermsPopup from "@/components/TermsPopup";
+import Link from "next/link";
 
 export default function AboutPage() {
   const [termsOpen, setTermsOpen] = useState(false);
@@ -9,9 +10,9 @@ export default function AboutPage() {
   return (
     <>
       <div className=" pb-4 pt-0">
-        <main className="mb-8">
+        <main className="mb-0 md:mb-8">
           {/* ── Why Choose Vroom ────────────────────────────────────────────── */}
-          <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch px-4 md:px-12 lg:px-20 mb-8">
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch px-4 md:px-12 lg:px-20 mb-0 md:mb-8">
             {/* Video */}
             <div className="bg-[#F3F4F6] hero-rounded overflow-hidden flex items-center justify-center min-h-[400px] lg:h-[85vh]">
               <video
@@ -27,7 +28,7 @@ export default function AboutPage() {
             </div>
 
             {/* Text */}
-            <div className="bg-[#f5f5f5] hero-rounded p-8 lg:py-12 lg:px-24 flex flex-col justify-center">
+            <div className="bg-[#f5f5f5] hero-rounded px-6 py-12 lg:py-12 lg:px-24 flex flex-col justify-center">
               <h2 className="page-header mb-6">Why Choose Vroom</h2>
               <div className="space-y-4 page-p">
                 <p>
@@ -49,10 +50,18 @@ export default function AboutPage() {
                   and we&apos;re here to make sure your next ride is a Vroom.
                 </p>
               </div>
+
+              <Link
+                href="/packages"
+                className="relative inline-flex w-fit group overflow-hidden bg-[#00F7EF] md:hidden text-black py-2 px-6 rounded-xl border border-black text-md transition-colors duration-300 header-cta mt-6"
+              >
+                <span className="absolute inset-0 w-0 bg-[#80fff3] transition-all duration-[1.5s] ease-out group-hover:w-full"></span>
+                <span className="relative z-10">Book Inspection</span>
+              </Link>
             </div>
           </section>
 
-          <div className="max-w-7xl mx-auto py-16 space-y-16 px-6 md:px-0 lg:px-0">
+          <div className="max-w-7xl mx-auto pt-16 pb-0 md:pt-16 md:pb-16 space-y-16 px-6 md:px-0 lg:px-0">
             {/* ── Icon Features Grid ──────────────────────────────────────────── */}
             <section className="-mx-6 px-6 scroll-pl-6 md:mx-0 md:px-0 md:scroll-pl-0 flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-8 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:gap-x-24">
               {[
@@ -106,9 +115,9 @@ export default function AboutPage() {
 
             {/* ── Mission & Vision ────────────────────────────────────────────── */}
             <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-[#00F7EF] rounded-[32px] p-16 py-20 min-h-[280px] flex flex-col justify-center border border-black">
+              <div className="bg-[#00F7EF] rounded-[32px] p-8 md:p-16 py-20 min-h-[280px] flex flex-col justify-center border border-black">
                 <h2 className="text-4xl font-medium mb-4">Mission</h2>
-                <p className="text-lg font-light leading-snug">
+                <p className="text-[17px] md:text-lg font-light leading-snug">
                   We want to empower car buyers with the truth by bringing
                   expert mechanics and advanced diagnostic tools directly to our
                   customers. We provide clear, visual, and honest insights that
@@ -122,9 +131,9 @@ export default function AboutPage() {
                   alt="Mission visual"
                 />
               </div>
-              <div className="bg-black text-white rounded-[32px] p-16 py-20 min-h-[280px] flex flex-col justify-center">
+              <div className="bg-black text-white rounded-[32px] p-8 md:p-16 py-20 min-h-[280px] flex flex-col justify-center">
                 <h2 className="text-4xl font-medium mb-4">Vision</h2>
-                <p className="text-lg font-light leading-snug opacity-90">
+                <p className="text-[17px] md:text-lg font-light leading-snug opacity-90">
                   To become the most trusted name in mobile automotive
                   inspections, setting new benchmarks for honesty, transparency,
                   and convenience with cutting-edge technology and an elite team
@@ -141,11 +150,11 @@ export default function AboutPage() {
             </section>
 
             {/* ── Join Team ───────────────────────────────────────────────────── */}
-            <section className="py-10">
-              <h2 className="text-[36px] font-medium mb-4">
+            <section className=" py-0 md:py-10">
+              <h2 className="text-[32px] md:text-[36px] font-medium mb-4">
                 Join Our Team of Specialists
               </h2>
-              <p className="text-[#0a0a0a] max-w-4xl text-lg font-light leading-snug">
+              <p className="text-[#0a0a0a] max-w-4xl text-[17px] md:text-lg font-light leading-snug">
                 Great service starts with great people. We are seeking
                 automotive pros and creative thinkers who share our commitment
                 to transparency and professionalism. If you&apos;re looking for
