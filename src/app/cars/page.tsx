@@ -153,6 +153,50 @@ function CarCard() {
   );
 }
 
+/* ── Car card skeleton ──────────────────────────────────────────────────────── */
+function CarCardSkeleton() {
+  return (
+    <div className="w-full max-w-[300px] mx-auto bg-gray-100 rounded-[40px] overflow-hidden flex flex-col shadow-sm h-fit">
+      {/* Image placeholder */}
+      <div className="skeleton-block h-48" />
+
+      <div className="px-6 pt-6 pb-6 flex flex-col gap-4">
+        {/* Brand / model */}
+        <div className="space-y-2">
+          <div className="skeleton-block h-6 w-3/4 rounded-full" />
+          <div className="skeleton-block h-4 w-1/2 rounded-full" />
+        </div>
+
+        <div className="border-t border-gray-200" />
+
+        {/* Specs row */}
+        <div className="flex gap-10">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="flex flex-col items-start gap-4">
+              <div className="skeleton-block w-6 h-6 rounded" />
+              <div className="skeleton-block h-3 w-8 rounded-full" />
+            </div>
+          ))}
+        </div>
+
+        <div className="border-t border-gray-200" />
+
+        {/* Year / Inspection / Gear */}
+        <div className="space-y-2">
+          <div className="skeleton-block h-3 w-2/3 rounded-full" />
+          <div className="skeleton-block h-3 w-3/4 rounded-full" />
+          <div className="skeleton-block h-3 w-1/2 rounded-full" />
+        </div>
+
+        <div className="border-t border-gray-200" />
+
+        {/* Link */}
+        <div className="skeleton-block h-4 w-1/3 rounded-full" />
+      </div>
+    </div>
+  );
+}
+
 /* ── Filter data ────────────────────────────────────────────────────────────── */
 const YEAR_OPTIONS: Option[] = [
   { value: "all", label: "All" },
@@ -222,8 +266,22 @@ const FILTERS: { label: string; options: Option[] }[] = [
 ];
 
 /* ── Page ───────────────────────────────────────────────────────────────────── */
+const TOTAL_PAGES = 8;
+
 export default function CarsPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const t = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(t);
+  }, [currentPage]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    setLoading(true);
+  };
 
   return (
     <div className="px-6 md:px-12 lg:px-20 py-4">
@@ -316,11 +374,49 @@ export default function CarsPage() {
           </aside>
 
           {/* Car grid */}
-          <main className="flex-grow grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 gap-y-10 items-start mb-10">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <CarCard key={i} />
-            ))}
-          </main>
+          <div className="flex-grow flex flex-col">
+            <main className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 gap-y-10 items-start mb-10">
+              {loading
+                ? [1, 2, 3, 4, 5, 6].map((i) => <CarCardSkeleton key={i} />)
+                : [1, 2, 3, 4, 5, 6].map((i) => <CarCard key={i} />)}
+            </main>
+
+            {/* Pagination */}
+            <div className="flex items-center justify-center gap-2 py-6">
+              {/* Prev */}
+              <button
+                onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+                className="w-9 h-9 flex items-center justify-center rounded-full border border-gray-300 text-gray-400 hover:border-[#00f7ef] hover:text-[#00f7ef] disabled:opacity-30 disabled:cursor-not-allowed transition-colors duration-200"
+              >
+                <i className="fa-solid fa-chevron-left text-[11px]" />
+              </button>
+
+              {/* Page numbers */}
+              {Array.from({ length: TOTAL_PAGES }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => handlePageChange(page)}
+                  className={`w-9 h-9 flex items-center justify-center rounded-full text-sm font-medium transition-colors duration-200 ${
+                    currentPage === page
+                      ? "bg-[#00f7ef] text-black border border-[#00f7ef]"
+                      : "border border-gray-300 text-gray-500 hover:border-[#00f7ef] hover:text-[#00f7ef]"
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
+
+              {/* Next */}
+              <button
+                onClick={() => handlePageChange(Math.min(TOTAL_PAGES, currentPage + 1))}
+                disabled={currentPage === TOTAL_PAGES}
+                className="w-9 h-9 flex items-center justify-center rounded-full border border-gray-300 text-gray-400 hover:border-[#00f7ef] hover:text-[#00f7ef] disabled:opacity-30 disabled:cursor-not-allowed transition-colors duration-200"
+              >
+                <i className="fa-solid fa-chevron-right text-[11px]" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

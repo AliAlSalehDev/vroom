@@ -52,7 +52,7 @@ function PackageCard({
         >
           Advanced inspection
           <br />
-          package + %5 • All-inclusive
+          package • All-inclusive
         </div>
       </div>
       <ul className={`checkmark-list ${listMarginTop} flex-grow ${textColor}`}>
