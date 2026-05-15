@@ -21,6 +21,7 @@ interface PackageCardProps {
   items: Array<{ text: string; bold?: boolean }>;
   iconClass?: string;
   listMarginTop?: string;
+  priceNote?: string;
   onBook: () => void;
 }
 
@@ -38,6 +39,7 @@ function PackageCard({
   items,
   iconClass = "text-gray-400",
   listMarginTop = "mt-6",
+  priceNote = "Advanced inspection",
   onBook,
 }: PackageCardProps) {
   return (
@@ -50,7 +52,7 @@ function PackageCard({
         <div
           className={`text-[10px] leading-tight ${priceNoteColor} font-medium`}
         >
-          Advanced inspection
+          {priceNote}
           <br />
           package • All-inclusive
         </div>
@@ -91,7 +93,7 @@ export default function PackagesPage() {
   return (
     <>
       <div className="px-6 md:px-12 lg:px-20 py-4">
-        <div className="max-w-7xl mx-auto py-16 pt-4 space-y-20 mb-8">
+        <div className="max-w-7xl mx-auto py-16 pt-4 space-y-16 md:space-y-20 mb-8">
           {/* ── Packages Section ─────────────────────────────────────────────── */}
           <section>
             <div className="mb-10">
@@ -104,11 +106,12 @@ export default function PackagesPage() {
             </div>
 
             {/* Row 1: Standard, Comprehensive, Comprehensive+ */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-y-16 mb-[2rem] md:mb-4">
               <PackageCard
                 title="Standard"
                 subtitle="140+ point inspection"
                 price="250"
+                priceNote="Standard inspection"
                 dirhamImg="/assets/dirham_dark.svg"
                 bg="bg-[#F0F0F0]"
                 buttonClass="bg-black text-white"
@@ -223,10 +226,7 @@ export default function PackagesPage() {
                   },
                 ]}
               />
-            </div>
 
-            {/* Row 2: Hybrid Premium, EV Premium */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-4">
               <PackageCard
                 title="Hybrid Premium"
                 subtitle="280+ point inspection"
@@ -310,9 +310,14 @@ export default function PackagesPage() {
                   { text: "Videos explaining all major findings" },
                 ]}
               />
+            </div>
+
+            {/* Row 2: Hybrid Premium, EV Premium */}
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-4">
+
 
               <div className="hidden md:block"></div>
-            </div>
+            </div> */}
 
             {/* Footnotes */}
             <div className="mt-8 space-y-4">
@@ -326,7 +331,7 @@ export default function PackagesPage() {
                 </p>
               </div>
               <p className="page-p font-medium">
-                <span className="font-semibold text-[24px]">
+                <span className="font-semibold text-[20px] md:text-[24px]">
                   Inquiring for more than two cars?
                 </span>
                 <br />
@@ -340,10 +345,7 @@ export default function PackagesPage() {
           {/* ── How Our Inspection Works ─────────────────────────────────────── */}
           <section>
             <div className="mb-12">
-              <h2
-                className="section-title text-black mb-2"
-                style={{ fontSize: 35 }}
-              >
+              <h2 className="text-black mb-2 text-[32px] md:text-[35px] font-semibold">
                 How our inspection works
               </h2>
               <p className="page-p">Three simple steps</p>
