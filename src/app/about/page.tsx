@@ -8,10 +8,10 @@ export default function AboutPage() {
 
   return (
     <>
-      <div className="px-6 md:px-12 lg:px-20 pb-4 pt-0">
+      <div className=" pb-4 pt-0">
         <main className="mb-8">
           {/* ── Why Choose Vroom ────────────────────────────────────────────── */}
-          <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-8">
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-8 px-4 md:px-12 lg:px-20">
             {/* Video */}
             <div className="bg-[#F3F4F6] hero-rounded overflow-hidden flex items-center justify-center min-h-[400px] lg:h-[85vh]">
               <video
@@ -52,7 +52,7 @@ export default function AboutPage() {
             </div>
           </section>
 
-          <div className="max-w-7xl mx-auto py-16 space-y-24 mt-8">
+          <div className="max-w-7xl mx-auto py-16 space-y-24 mt-8 px-6 md:px-12 lg:px-20">
             {/* ── Icon Features Grid ──────────────────────────────────────────── */}
             <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 gap-x-24">
               {[
