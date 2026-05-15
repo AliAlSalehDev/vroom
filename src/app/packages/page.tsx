@@ -93,7 +93,7 @@ export default function PackagesPage() {
   return (
     <>
       <div className="px-6 md:px-12 lg:px-20 py-4">
-        <div className="max-w-7xl mx-auto py-16 pt-4 space-y-16 md:space-y-20 mb-8">
+        <div className="max-w-7xl mx-auto py-16 pt-4 space-y-16 md:space-y-20">
           {/* ── Packages Section ─────────────────────────────────────────────── */}
           <section>
             <div className="mb-10">
@@ -345,13 +345,16 @@ export default function PackagesPage() {
           {/* ── How Our Inspection Works ─────────────────────────────────────── */}
           <section>
             <div className="mb-12">
-              <h2 className="text-black mb-2 text-[32px] md:text-[35px] font-semibold">
+              <h2
+                className="text-black mb-2 text-[32px] md:text-[35px] font-semibold"
+                style={{ lineHeight: 1.2 }}
+              >
                 How our inspection works
               </h2>
               <p className="page-p">Three simple steps</p>
             </div>
 
-            <div className="-mx-6 px-4 scroll-pl-4 md:mx-0 md:px-0 md:scroll-pl-0 flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-3 md:gap-8">
+            <div className="-mx-4 px-4 scroll-pl-4 md:mx-0 md:px-0 md:scroll-pl-0 flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-2 md:pb-0 md:overflow-visible md:grid md:grid-cols-3 md:gap-8">
               {[
                 {
                   img: "/assets/mobile-check.svg",
@@ -374,7 +377,7 @@ export default function PackagesPage() {
               ].map(({ img, alt, title, desc }) => (
                 <div
                   key={title}
-                  className="border border-black rounded-[32px] p-8 pt-4 flex flex-col bg-[#F0F0F0] text-center md:text-left flex-shrink-0 w-[78vw] md:w-auto snap-start"
+                  className="border border-black rounded-[32px] p-8 pt-4 flex flex-col bg-[#F0F0F0] text-left md:text-left flex-shrink-0 w-[78vw] md:w-auto snap-start"
                 >
                   <div className="mb-8 flex justify-center">
                     <img src={img} className="h-52 object-contain" alt={alt} />
