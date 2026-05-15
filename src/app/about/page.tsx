@@ -175,7 +175,9 @@ export default function AboutPage() {
                 onClick={() => setTermsOpen(true)}
                 className="border border-[#0a0a0a] rounded-full py-2 px-6 text-sm flex items-center justify-between gap-4 text-[#0a0a0a] hover:bg-gray-50 transition min-w-[300px]"
               >
-                <span className="font-light">Terms &amp; Conditions</span>
+                <span className="font-light" style={{ lineHeight: 1.2 }}>
+                  Terms &amp; Conditions
+                </span>
                 <i className="fa-solid fa-chevron-down text-[12px]"></i>
               </button>
             </div>
