@@ -2,10 +2,7 @@ export default function ContactPage() {
   return (
     <div className="md:px-12 lg:px-20 pb-4 pt-0 mb-8">
       {/* ── Hero Section ──────────────────────────────────────────────────────── */}
-      <section
-        className="mx-4 md:mx-0 relative hero-rounded overflow-hidden bg-black flex items-center"
-        style={{ height: "85vh" }}
-      >
+      <section className="mx-4 md:mx-0 relative hero-rounded overflow-hidden bg-black flex items-center h-[60vh] md:h-[85vh]">
         {/* Background */}
         <div
           className="absolute inset-0 z-0"
@@ -54,7 +51,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="space-y-6">
+            <div className="hidden md:block space-y-6">
               <p className="contact-banner-subtitle opacity-90">
                 Contact us through WhatsApp, phone, or email to
                 <br className="hidden md:block" />
@@ -82,8 +79,29 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* ── Contact info — mobile only, shown below hero ───────────────────────── */}
+      <div className="md:hidden px-6 pt-8 space-y-4 text-[#0a0a0a] mt-8">
+        <p className="contact-banner-subtitle">
+          Contact us through WhatsApp, phone, or email to discuss your
+          inspection or get professional assistance.
+        </p>
+        <div className="space-y-1 contact-banner-subtitle">
+          <p>
+            <span>Call/WhatsApp:</span>{" "}
+            <span className="font-semibold">050 4273827</span>
+          </p>
+          <p>
+            <span>Tel:</span> <span className="font-semibold">04 273827</span>
+          </p>
+          <p>
+            <span>Email:</span>{" "}
+            <span className="font-semibold">info@vroomofficial.com</span>
+          </p>
+        </div>
+      </div>
+
       {/* ── Feature Cards ─────────────────────────────────────────────────────── */}
-      <div className="max-w-7xl mx-auto py-16 space-y-24 mt-8 px-6 md:px-0">
+      <div className="max-w-7xl mx-auto pb-0 md:pb-16 py-16 space-y-24 mt-4 md:mt-8 px-6 md:px-0">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
           <div className="flex flex-col">
             <div className="w-12 h-12">

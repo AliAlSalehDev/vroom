@@ -78,7 +78,7 @@ export default function BookingPopup({
       }}
     >
       <div
-        className="booking-popup-content w-full h-[90vh] bg-[#1c1c1c] p-8 md:p-28 text-white relative overflow-y-auto"
+        className="booking-popup-content w-full h-[90vh] bg-[#1c1c1c] pt-20 px-8 pb-8 md:p-28 text-white relative overflow-y-auto"
         style={{ transform: isOpen ? "translateY(0)" : "translateY(100%)" }}
       >
         <button
