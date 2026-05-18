@@ -68,6 +68,243 @@ function FilterSelect({
   );
 }
 
+/* ── Car image carousel ─────────────────────────────────────────────────────── */
+const CAR_IMAGES = [
+  "https://dbz-images.dubizzle.com/images/2026/04/01/97345bdae5c24dcebc09f6526302de00-.jpeg",
+  "https://wrench.com/blog/content/images/2020/07/usedcarinspection-1.jpg",
+  "https://dbz-images.dubizzle.com/images/2026/03/18/4ba6fb857644498382869fe8d9974006-.jpeg",
+];
+
+function CarImageCarousel() {
+  const [active, setActive] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalActive, setModalActive] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const dragStart = useRef<number | null>(null);
+
+  const goTo = (idx: number) => {
+    if (!ref.current) return;
+    ref.current.scrollTo({
+      left: idx * ref.current.offsetWidth,
+      behavior: "smooth",
+    });
+  };
+
+  const modalGoTo = (idx: number) => {
+    const clamped = Math.max(0, Math.min(CAR_IMAGES.length - 1, idx));
+    if (!modalRef.current) return;
+    modalRef.current.scrollTo({
+      left: clamped * modalRef.current.offsetWidth,
+      behavior: "smooth",
+    });
+  };
+
+  const handleScroll = () => {
+    if (!ref.current) return;
+    setActive(Math.round(ref.current.scrollLeft / ref.current.offsetWidth));
+  };
+
+  const handleModalScroll = () => {
+    if (!modalRef.current) return;
+    setModalActive(
+      Math.round(modalRef.current.scrollLeft / modalRef.current.offsetWidth),
+    );
+  };
+
+  const onMouseDown = (e: React.MouseEvent) => {
+    dragStart.current = e.pageX;
+  };
+  const onMouseUp = (e: React.MouseEvent) => {
+    if (dragStart.current === null) return;
+    const delta = dragStart.current - e.pageX;
+    dragStart.current = null;
+    if (Math.abs(delta) < 20) return;
+    if (delta > 0) goTo(Math.min(CAR_IMAGES.length - 1, active + 1));
+    else goTo(Math.max(0, active - 1));
+  };
+
+  const openModal = () => {
+    setModalActive(active);
+    setModalOpen(true);
+  };
+
+  // Jump modal scroll to correct slide when it opens
+  useEffect(() => {
+    if (modalOpen && modalRef.current) {
+      modalRef.current.scrollLeft = modalActive * modalRef.current.offsetWidth;
+    }
+  }, [modalOpen]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Keyboard navigation for modal
+  useEffect(() => {
+    if (!modalOpen) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") modalGoTo(modalActive + 1);
+      else if (e.key === "ArrowLeft") modalGoTo(modalActive - 1);
+      else if (e.key === "Escape") setModalOpen(false);
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [modalOpen, modalActive]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Lock body scroll while modal is open
+  useEffect(() => {
+    document.body.style.overflow = modalOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [modalOpen]);
+
+  return (
+    <>
+      {/* ── Carousel ───────────────────────────────────────────────────────── */}
+      <div
+        className="group relative h-28 md:h-48 flex-shrink-0"
+        style={{
+          background: "linear-gradient(160deg, #c8c8c8 0%, #e8e8e8 100%)",
+        }}
+      >
+        <div
+          ref={ref}
+          onScroll={handleScroll}
+          onMouseDown={onMouseDown}
+          onMouseUp={onMouseUp}
+          className="flex h-full overflow-x-auto no-scrollbar snap-x snap-mandatory cursor-grab active:cursor-grabbing select-none"
+        >
+          {CAR_IMAGES.map((src, i) => (
+            <div
+              key={i}
+              className="flex-shrink-0 w-full h-full flex items-end md:items-center justify-center p-2 md:p-0 snap-start"
+            >
+              <img
+                src={src}
+                alt={`Car view ${i + 1}`}
+                className="w-full h-full object-contain drop-shadow pointer-events-none"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Fullscreen button — top left */}
+        <button
+          onClick={openModal}
+          className="absolute top-2 left-2 md:left-4 w-6 h-6 md:w-7 md:h-7 rounded-full bg-black/25 hover:bg-black/45 flex items-center justify-center text-white transition-colors"
+        >
+          <i className="fa-solid fa-expand text-[9px] md:text-[10px]" />
+        </button>
+
+        {/* Arrow buttons — desktop on hover */}
+        {active > 0 && (
+          <button
+            onClick={() => goTo(active - 1)}
+            className="hidden md:flex absolute left-8 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/30 hover:bg-black/50 items-center justify-center text-white transition-colors opacity-0 group-hover:opacity-100"
+          >
+            <i className="fa-solid fa-chevron-left text-[10px]" />
+          </button>
+        )}
+        {active < CAR_IMAGES.length - 1 && (
+          <button
+            onClick={() => goTo(active + 1)}
+            className="hidden md:flex absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/30 hover:bg-black/50 items-center justify-center text-white transition-colors opacity-0 group-hover:opacity-100"
+          >
+            <i className="fa-solid fa-chevron-right text-[10px]" />
+          </button>
+        )}
+
+        {/* Dots */}
+        <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5">
+          {CAR_IMAGES.map((_, i) => (
+            <div
+              key={i}
+              className={`rounded-full transition-all duration-200 ${i === active ? "w-3.5 h-1.5 bg-gray-700" : "w-1.5 h-1.5 bg-gray-500/50"}`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* ── Fullscreen modal ────────────────────────────────────────────────── */}
+      <div
+        className={`fixed inset-0 z-[300] flex flex-col transition-opacity duration-300 ${modalOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+        style={{ background: "rgba(0,0,0,0.93)" }}
+        onClick={() => setModalOpen(false)}
+      >
+        {/* Top bar */}
+        <div
+          className="flex items-center justify-between px-6 py-5 flex-shrink-0"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <span className="text-white/40 text-sm tracking-widest font-light">
+            {modalActive + 1} &nbsp;/&nbsp; {CAR_IMAGES.length}
+          </span>
+          <button
+            onClick={() => setModalOpen(false)}
+            className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+          >
+            <i className="fa-solid fa-xmark text-base" />
+          </button>
+        </div>
+
+        {/* Slider */}
+        <div
+          className="flex-1 relative flex items-center min-h-0"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            onClick={() => modalGoTo(modalActive - 1)}
+            disabled={modalActive === 0}
+            className="absolute left-4 z-10 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
+          >
+            <i className="fa-solid fa-chevron-left" />
+          </button>
+
+          <div
+            ref={modalRef}
+            onScroll={handleModalScroll}
+            className="flex w-full h-full overflow-x-auto no-scrollbar snap-x snap-mandatory"
+          >
+            {CAR_IMAGES.map((src, i) => (
+              <div
+                key={i}
+                className="flex-shrink-0 w-full h-full flex items-center justify-center px-16 snap-start"
+              >
+                <img
+                  src={src}
+                  alt={`Car view ${i + 1}`}
+                  className="max-h-[65vh] max-w-full object-contain select-none"
+                  draggable={false}
+                />
+              </div>
+            ))}
+          </div>
+
+          <button
+            onClick={() => modalGoTo(modalActive + 1)}
+            disabled={modalActive === CAR_IMAGES.length - 1}
+            className="absolute right-4 z-10 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors disabled:opacity-20 disabled:cursor-not-allowed"
+          >
+            <i className="fa-solid fa-chevron-right" />
+          </button>
+        </div>
+
+        {/* Bottom dots */}
+        <div
+          className="flex justify-center gap-2 py-6 flex-shrink-0"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {CAR_IMAGES.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => modalGoTo(i)}
+              className={`rounded-full transition-all duration-200 ${i === modalActive ? "w-6 h-2 bg-[#00F7EF]" : "w-2 h-2 bg-white/25 hover:bg-white/50"}`}
+            />
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
 /* ── Car card ───────────────────────────────────────────────────────────────── */
 const CAR_CARD = {
   brand: "Mercedes Benz",
@@ -82,41 +319,58 @@ const CAR_CARD = {
 
 function CarCard() {
   return (
-    <div className="w-full max-w-[300px] mx-auto bg-[#1C1C1E] rounded-[40px] overflow-hidden flex flex-col shadow-xl h-fit">
-      <div className="bg-[#BCBCBC] h-48 flex items-center justify-center p-4">
-        <img
-          src="/assets/car-sample.png"
-          alt="Mercedes Benz"
-          className="w-full h-full object-contain"
-        />
-      </div>
+    <div className="w-full md:max-w-[300px] md:mx-auto bg-[#1C1C1E] rounded-[20px] md:rounded-[40px] overflow-hidden flex flex-col shadow-xl h-fit">
+      <CarImageCarousel />
 
-      <div className="px-6 pt-6 pb-6 flex flex-col gap-4">
-        <div className="space-y-1">
-          <h3 className="text-white text-2xl font-semibold leading-none">
+      <div className="px-3 pt-3 pb-3 md:px-6 md:pt-6 md:pb-6 flex flex-col gap-2 md:gap-4">
+        <div className="space-y-0.5 md:space-y-1">
+          <h3 className="text-white text-xs md:text-2xl font-semibold leading-none truncate">
             {CAR_CARD.brand}
           </h3>
-          <p className="text-white text-lg opacity-70">{CAR_CARD.model}</p>
+          <p className="text-white text-[10px] md:text-lg opacity-70 truncate">
+            {CAR_CARD.model}
+          </p>
         </div>
 
         <div className="border-t border-white/10"></div>
 
-        <div className="flex gap-10">
-          <div className="flex flex-col items-start gap-4">
-            <img src="/assets/specs.svg" className="w-6 h-6" alt="Specs" />
-            <span className="text-white text-sm" style={{ fontWeight: 300 }}>
+        <div className="flex gap-2 md:gap-10">
+          <div className="flex flex-col items-start gap-1 md:gap-4">
+            <img
+              src="/assets/specs.svg"
+              className="w-3.5 h-3.5 md:w-6 md:h-6"
+              alt="Specs"
+            />
+            <span
+              className="text-white text-[9px] md:text-sm"
+              style={{ fontWeight: 300 }}
+            >
               {CAR_CARD.specs}
             </span>
           </div>
-          <div className="flex flex-col items-start gap-4">
-            <img src="/assets/fuel.svg" className="w-6 h-6" alt="Fuel" />
-            <span className="text-white text-sm" style={{ fontWeight: 300 }}>
+          <div className="flex flex-col items-start gap-1 md:gap-4">
+            <img
+              src="/assets/fuel.svg"
+              className="w-3.5 h-3.5 md:w-6 md:h-6"
+              alt="Fuel"
+            />
+            <span
+              className="text-white text-[9px] md:text-sm"
+              style={{ fontWeight: 300 }}
+            >
               {CAR_CARD.fuel}
             </span>
           </div>
-          <div className="flex flex-col items-start gap-4">
-            <img src="/assets/mileage.svg" className="w-6 h-6" alt="Mileage" />
-            <span className="text-white text-sm" style={{ fontWeight: 300 }}>
+          <div className="flex flex-col items-start gap-1 md:gap-4">
+            <img
+              src="/assets/mileage.svg"
+              className="w-3.5 h-3.5 md:w-6 md:h-6"
+              alt="Mileage"
+            />
+            <span
+              className="text-white text-[9px] md:text-sm"
+              style={{ fontWeight: 300 }}
+            >
               {CAR_CARD.mileage}
             </span>
           </div>
@@ -124,7 +378,7 @@ function CarCard() {
 
         <div className="border-t border-white/10"></div>
 
-        <div className="text-white text-md">
+        <div className="text-white text-[9px] md:text-[16px] leading-tight md:leading-normal">
           <p className="opacity-70">
             Year:{" "}
             <span className="font-semibold text-white">{CAR_CARD.year}</span>
@@ -145,7 +399,7 @@ function CarCard() {
 
         <a
           href="#"
-          className="text-white text-lg font-normal hover:text-[#00F7EF] transition-colors"
+          className="text-white text-[10px] md:text-lg font-normal hover:text-[#00F7EF] transition-colors flex items-center gap-1"
         >
           Inspect this car
         </a>
@@ -157,42 +411,37 @@ function CarCard() {
 /* ── Car card skeleton ──────────────────────────────────────────────────────── */
 function CarCardSkeleton() {
   return (
-    <div className="w-full max-w-[300px] mx-auto bg-gray-100 rounded-[40px] overflow-hidden flex flex-col shadow-sm h-fit">
-      {/* Image placeholder */}
-      <div className="skeleton-block h-48" />
+    <div className="w-full md:max-w-[300px] md:mx-auto bg-gray-100 rounded-[20px] md:rounded-[40px] overflow-hidden flex flex-col shadow-sm h-fit">
+      <div className="skeleton-block h-28 md:h-48" />
 
-      <div className="px-6 pt-6 pb-6 flex flex-col gap-4">
-        {/* Brand / model */}
-        <div className="space-y-2">
-          <div className="skeleton-block h-6 w-3/4 rounded-full" />
-          <div className="skeleton-block h-4 w-1/2 rounded-full" />
+      <div className="px-3 pt-3 pb-3 md:px-6 md:pt-6 md:pb-6 flex flex-col gap-2 md:gap-4">
+        <div className="space-y-1 md:space-y-2">
+          <div className="skeleton-block h-3 md:h-6 w-3/4 rounded-full" />
+          <div className="skeleton-block h-2.5 md:h-4 w-1/2 rounded-full" />
         </div>
 
         <div className="border-t border-gray-200" />
 
-        {/* Specs row */}
-        <div className="flex gap-10">
+        <div className="flex gap-2 md:gap-10">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="flex flex-col items-start gap-4">
-              <div className="skeleton-block w-6 h-6 rounded" />
-              <div className="skeleton-block h-3 w-8 rounded-full" />
+            <div key={i} className="flex flex-col items-start gap-1 md:gap-4">
+              <div className="skeleton-block w-3.5 h-3.5 md:w-6 md:h-6 rounded" />
+              <div className="skeleton-block h-2 md:h-3 w-5 md:w-8 rounded-full" />
             </div>
           ))}
         </div>
 
         <div className="border-t border-gray-200" />
 
-        {/* Year / Inspection / Gear */}
-        <div className="space-y-2">
-          <div className="skeleton-block h-3 w-2/3 rounded-full" />
-          <div className="skeleton-block h-3 w-3/4 rounded-full" />
-          <div className="skeleton-block h-3 w-1/2 rounded-full" />
+        <div className="space-y-1 md:space-y-2">
+          <div className="skeleton-block h-2 md:h-3 w-2/3 rounded-full" />
+          <div className="skeleton-block h-2 md:h-3 w-3/4 rounded-full" />
+          <div className="skeleton-block h-2 md:h-3 w-1/2 rounded-full" />
         </div>
 
         <div className="border-t border-gray-200" />
 
-        {/* Link */}
-        <div className="skeleton-block h-4 w-1/3 rounded-full" />
+        <div className="skeleton-block h-2 md:h-4 w-1/3 rounded-full" />
       </div>
     </div>
   );
@@ -383,7 +632,7 @@ export default function CarsPage() {
 
           {/* Car grid */}
           <div className="flex-grow flex flex-col">
-            <main className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 gap-y-10 items-start mb-10">
+            <main className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-3 gap-y-4 md:gap-6 md:gap-y-10 items-start mb-10">
               {loading
                 ? [1, 2, 3, 4, 5, 6].map((i) => <CarCardSkeleton key={i} />)
                 : [1, 2, 3, 4, 5, 6].map((i) => <CarCard key={i} />)}
